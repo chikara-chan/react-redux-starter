@@ -1,0 +1,39 @@
+{
+  "author": "chikara",
+  "name": "order-monitor",
+  "version": "1.0.0",
+  "keywords": [
+    "refund"
+  ],
+  "description": "高危订单监控中心",
+  "license": "ISC",
+  "scripts": {
+    "start": "gulp"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "classnames": "^2.2.5",
+    "object-assign": "^1.0.0",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "browser-sync": "^2.14.0",
+    "del": "^2.2.1",
+    "file-loader": "^0.9.0",
+    "flatten": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-flatten": "^0.3.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1"
+  }
+}

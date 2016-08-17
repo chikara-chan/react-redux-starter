@@ -1,0 +1,20 @@
+.main {
+	background: #ffffff;
+	border-top: 1px solid #dbdbdb;
+	margin-bottom: 0.37rem;
+	.item{
+		height:0.98rem;
+		line-height: 0.98rem;
+		font-size:0.3rem;
+		color:#666666;
+		padding-left:0.47rem;
+		border-bottom: 1px solid #dbdbdb;
+		img{
+			float: right;
+			width:0.32rem;
+			height:0.32rem;
+			margin-top: 0.34rem;
+			margin-right:0.32rem; 
+		}
+	}
+}
