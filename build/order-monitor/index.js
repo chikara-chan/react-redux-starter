@@ -8356,49 +8356,25 @@ webpackJsonp([0,1],[
 	  value: true
 	});
 
-	var _redux = __webpack_require__(302);
-
-	var _reactRedux = __webpack_require__(300);
-
-	var _Counter = __webpack_require__(308);
-
-	var _Counter2 = _interopRequireDefault(_Counter);
-
-	var _actions = __webpack_require__(306);
-
-	var CounterActions = _interopRequireWildcard(_actions);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function mapStateToProps(state) {
-	  return {
-	    counter: state.counter
-	  };
-	}
-
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)(CounterActions, dispatch);
-	}
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Counter2.default);
-
-/***/ },
-/* 308 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(298);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(302);
+
+	var _reactRedux = __webpack_require__(300);
+
+	var _FormSection = __webpack_require__(308);
+
+	var _FormSection2 = _interopRequireDefault(_FormSection);
+
+	var _actions = __webpack_require__(306);
+
+	var TodoActions = _interopRequireWildcard(_actions);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8408,73 +8384,272 @@ webpackJsonp([0,1],[
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Counter = function (_Component) {
-	  _inherits(Counter, _Component);
+	var App = function (_Component) {
+	  _inherits(App, _Component);
 
-	  function Counter() {
-	    _classCallCheck(this, Counter);
+	  function App() {
+	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Counter).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
 	  }
 
-	  _createClass(Counter, [{
+	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var increment = _props.increment;
-	      var incrementIfOdd = _props.incrementIfOdd;
-	      var incrementAsync = _props.incrementAsync;
-	      var decrement = _props.decrement;
-	      var counter = _props.counter;
-
+	      // const { todos, actions } = this.props;
 	      return _react2.default.createElement(
-	        'p',
+	        'div',
 	        null,
-	        'Clicked: ',
-	        counter,
-	        ' times',
-	        ' ',
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: increment },
-	          '+'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: decrement },
-	          '-'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: incrementIfOdd },
-	          'Increment if odd'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              return incrementAsync();
-	            } },
-	          'Increment async'
-	        )
+	        _react2.default.createElement(_FormSection2.default, null)
 	      );
 	    }
 	  }]);
 
-	  return Counter;
+	  return App;
 	}(_react.Component);
 
-	Counter.propTypes = {
-	  increment: _react.PropTypes.func.isRequired,
-	  incrementIfOdd: _react.PropTypes.func.isRequired,
-	  incrementAsync: _react.PropTypes.func.isRequired,
-	  decrement: _react.PropTypes.func.isRequired,
-	  counter: _react.PropTypes.number.isRequired
-	};
+	function mapStateToProps(state) {
+	  return {
+	    counter: state.counter
+	  };
+	}
 
-	exports.default = Counter;
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(TodoActions, dispatch)
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
+
+/***/ },
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(298);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(309);
+
+	var _reactBootstrapDatetimepicker = __webpack_require__(310);
+
+	var _reactBootstrapDatetimepicker2 = _interopRequireDefault(_reactBootstrapDatetimepicker);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FormSection = function (_Component) {
+	    _inherits(FormSection, _Component);
+
+	    function FormSection(props, context) {
+	        _classCallCheck(this, FormSection);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(FormSection).call(this, props, context));
+	    }
+
+	    _createClass(FormSection, [{
+	        key: 'render',
+	        value: function render() {
+	            // const { todos, actions } = this.props;
+	            // const { filter } = this.state;
+
+	            // const filteredTodos = todos.filter(TODO_FILTERS[filter])
+	            // const completedCount = todos.reduce((count, todo) =>
+	            //   todo.completed ? count + 1 : count,
+	            //   0
+	            // )
+
+	            return _react2.default.createElement(
+	                'section',
+	                { className: 'form-section' },
+	                _react2.default.createElement(
+	                    _reactBootstrap.Form,
+	                    { inline: true },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.FormGroup,
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.ControlLabel,
+	                            null,
+	                            '下单时间'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.FormControl.Static,
+	                            { className: 'datetime-wrap' },
+	                            _react2.default.createElement(_reactBootstrapDatetimepicker2.default, { inputFormat: 'YYYY-MM-DD  h:mm A' })
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.FormControl.Static,
+	                            { className: 'datetime-wrap' },
+	                            _react2.default.createElement(_reactBootstrapDatetimepicker2.default, { inputFormat: 'YYYY-MM-DD  h:mm A' })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.FormGroup,
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.ControlLabel,
+	                            null,
+	                            '城市'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.FormControl,
+	                            { componentClass: 'select', placeholder: 'select' },
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'select' },
+	                                '全国'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '北京'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '广州'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '深圳'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '上海'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '杭州'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '苏州'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.FormControl,
+	                            { componentClass: 'select', placeholder: 'select' },
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'select' },
+	                                '店铺名称'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '店铺ID'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '小二ID'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '小二主管'
+	                            )
+	                        ),
+	                        _react2.default.createElement(_reactBootstrap.FormControl, { type: 'text', placeholder: '' })
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.FormGroup,
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.ControlLabel,
+	                            null,
+	                            '订单来源'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.FormControl,
+	                            { componentClass: 'select', placeholder: 'select' },
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'select' },
+	                                '全部'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '闪电购'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '手淘'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '美团'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '饿了么'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '自营批发订单'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: 'other' },
+	                                '其它'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { type: 'submit' },
+	                        '查询'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return FormSection;
+	}(_react.Component);
+
+	// MainSection.propTypes = {
+	//   todos: PropTypes.array.isRequired,
+	//   actions: PropTypes.object.isRequired
+	// }
+
+	exports.default = FormSection;
+
+/***/ },
+/* 309 */
+/***/ function(module, exports) {
+
+	module.exports = window.ReactBootstrap;
+
+/***/ },
+/* 310 */
+/***/ function(module, exports) {
+
+	module.exports = window.ReactBootstrapDatetimepicker;
 
 /***/ }
 ]);

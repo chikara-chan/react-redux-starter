@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common/index.js');
 module.exports = {
     entry: {
-        'order-monitor/index': './src/order-monitor/scripts/index.js',
+        'order-monitor/index': './src/order-monitor/scripts/index.js'
     },
     output: {
         path: './build/',
@@ -23,7 +23,8 @@ module.exports = {
         'react-dom': 'window.ReactDOM',
         'redux': 'window.Redux',
         'react-redux': 'window.ReactRedux',
-        'react-bootstrap': 'window.ReactBootstrap'
+        'react-bootstrap': 'window.ReactBootstrap',
+        'react-bootstrap-datetimepicker': 'window.ReactBootstrapDatetimepicker'
     },
     plugins: [commonsPlugin]
 };
