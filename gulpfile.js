@@ -39,10 +39,12 @@ gulp.task('style', function() {
 
 gulp.task('webpack', function(callback) {
     webpackCompiler.run(function(err, stats) {
-        if (err) throw new gutil.PluginError('[webpack]', err);
-        gutil.log('[webpack]', stats.toString({
-            colors: true
-        }));
+        if (err) {
+            throw new gutil.PluginError('[webpack]', err);
+        }
+        // gutil.log('[webpack]', stats.toString({
+        //     colors: true
+        // }));
         callback();
     });
 });
@@ -76,6 +78,6 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['clean', 'style', 'script']);
 
-gulp.task('default', ['build', 'watch', 'browser-sync']);
+gulp.task('default', ['style', 'script', 'watch', 'browser-sync']);
 
 module.exports = gulp;

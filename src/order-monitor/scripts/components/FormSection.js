@@ -9,15 +9,6 @@ class FormSection extends Component {
     }
 
     render() {
-    // const { todos, actions } = this.props;
-    // const { filter } = this.state;
-
-    // const filteredTodos = todos.filter(TODO_FILTERS[filter])
-    // const completedCount = todos.reduce((count, todo) =>
-    //   todo.completed ? count + 1 : count,
-    //   0
-    // )
-
         return (
             <section className="form-section">
                 <Form inline>
@@ -69,10 +60,5 @@ class FormSection extends Component {
         );
     }
 }
-
-// MainSection.propTypes = {
-//   todos: PropTypes.array.isRequired,
-//   actions: PropTypes.object.isRequired
-// }
 
 export default FormSection;
