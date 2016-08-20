@@ -8,6 +8,12 @@ class FormSection extends Component {
         super(props, context);
     }
 
+    _onClick(e) {
+        e.preventDefault();
+        const { actions } = this.props;
+        console.log(this.refs.cht.value)
+    }
+
     render() {
         return (
             <section className="form-section">
@@ -15,7 +21,7 @@ class FormSection extends Component {
                     <FormGroup>
                         <ControlLabel>下单时间</ControlLabel>
                         <FormControl.Static className="datetime-wrap">
-                            <DateTimeField inputFormat="YYYY-MM-DD  h:mm A" />
+                            <DateTimeField ref="start" inputFormat="YYYY-MM-DD  h:mm A" />
                         </FormControl.Static>
                         <FormControl.Static className="datetime-wrap">
                             <DateTimeField inputFormat="YYYY-MM-DD  h:mm A" />
@@ -23,7 +29,7 @@ class FormSection extends Component {
                     </FormGroup>
                     <FormGroup>
                         <ControlLabel>城市</ControlLabel>
-                        <FormControl componentClass="select" placeholder="select">
+                        <FormControl ref="cht" componentClass="select" placeholder="select">
                             <option value="select">全国</option>
                             <option value="other">北京</option>
                             <option value="other">广州</option>
@@ -52,7 +58,7 @@ class FormSection extends Component {
                             <option value="other">其它</option>
                         </FormControl>
                     </FormGroup>
-                    <Button type="submit">
+                    <Button type="submit" onClick={this._onClick.bind(this)}>
                         查询
                     </Button>
                 </Form>

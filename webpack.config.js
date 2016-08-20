@@ -24,7 +24,7 @@ module.exports = {
         'redux': 'window.Redux',
         'react-redux': 'window.ReactRedux',
         'react-bootstrap': 'window.ReactBootstrap',
-        'react-bootstrap-datetimepicker': 'window.ReactBootstrapDatetimepicker'
+        'superagent': 'window.superagent',
     },
     plugins: [commonsPlugin]
 };

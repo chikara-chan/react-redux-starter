@@ -1,1 +1,1 @@
-基于react、redux、webpack、gulp的模块化开发配置
+SDG风火轮项目组
