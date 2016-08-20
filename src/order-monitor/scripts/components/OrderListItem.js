@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import { Checkbox, Button, Modal } from 'react-bootstrap';
 
 class OrderListItem extends Component {

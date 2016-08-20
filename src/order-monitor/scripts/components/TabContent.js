@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
 import OrderList from './OrderList';
 import { SHOW_DANGER, SHOW_WARN, SHOW_REJECT, SHOW_TIMEOUT } from '../constants/PrimaryOrderTypes.js';
@@ -75,12 +75,12 @@ class TabContent extends Component {
                 break;
         }
         return (
-            <section className="tab-content">
+            <div className="tab-content">
                 <Nav bsStyle="pills" activeKey={this.state.key} onSelect={this._onSelect.bind(this)}>
                     {entries.map((entry, index) =>  <NavItem eventKey={index.toString()} onClick={this._onClick.bind(this, primaryOrderType, entry.type)}>{entry.text}</NavItem>)}
                 </Nav>
                 <OrderList hideCheckbox={hideCheckbox} orders={orders} actions={actions} />
-            </section>
+            </div>
         );
     }
 }

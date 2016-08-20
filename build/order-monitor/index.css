@@ -1,2 +1,8 @@
 .form-section .datetime-wrap {
   position: relative; }
+
+.main-section .nav {
+  height: 42px; }
+
+.order-list .hide {
+  display: none; }

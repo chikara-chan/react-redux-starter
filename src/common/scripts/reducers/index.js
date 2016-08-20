@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import counter from './counter'
+import { combineReducers } from 'redux';
+import alert from './alert';
 
 const rootReducer = combineReducers({
-  counter
-})
+  	alert
+});
 
-export default rootReducer
+export default rootReducer;

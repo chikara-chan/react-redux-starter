@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FormSection from '../components/FormSection';

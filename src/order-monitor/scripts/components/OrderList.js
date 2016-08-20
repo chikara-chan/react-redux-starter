@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import { Checkbox } from 'react-bootstrap';
 import classnames from 'classnames';
 import OrderListItem from './OrderListItem';
@@ -60,7 +60,7 @@ class OrderList extends Component {
         const { orders, actions, hideCheckbox } = this.props,
             { filter, willChecked, didChecked } = this.state;
         return (
-            <section className="order-list">
+            <div className="order-list">
             	<div>
                     共23笔订单
                     <Checkbox className={classnames({hide: hideCheckbox})}
@@ -77,7 +77,7 @@ class OrderList extends Component {
 		                <OrderListItem key={order.id} order={order} />
 		            )}
 		        </ul>
-            </section>
+            </div>
         );
     }
 }
