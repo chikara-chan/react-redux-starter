@@ -1,11 +1,22 @@
-import { GET_ORDER } from '../constants/ActionTypes';
+import { SHOW_ALERT, HIDE_ALERT } from '../constants/ActionTypes';
 
-const initialState = 'sb';
+const initialState = {
+	text: '',
+	show: false
+};
 
 export default function orders(state = initialState, action) {
     switch (action.type) {
-        case GET_ORDER:
-            return action.text;
+        case SHOW_ALERT:
+            return {
+                text: action.text,
+                show: true
+            };
+        case HIDE_ALERT:
+            return {
+                text: '',
+                show: false
+            };
         default:
             return state;
     }

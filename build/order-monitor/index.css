@@ -1,8 +1,11 @@
-.form-section .datetime-wrap {
+.app .form-section .datetime-wrap {
   position: relative; }
 
-.main-section .nav {
+.app .main-section .nav {
   height: 42px; }
 
-.order-list .hide {
+.app .main-section .order-list .hide {
   display: none; }
+
+.app .main-section .order-list .todo-list {
+  margin-bottom: 0; }

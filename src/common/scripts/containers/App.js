@@ -1,17 +1,29 @@
 import { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { Modal } from 'react-bootstrap';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
+import * as actions from '../actions';
 
 class App extends Component {
+    constructor(props, context) {
+        super(props, context);
+    }
+
+    _closeModal() {
+        actions.hideAlert();
+    }
+
     render() {
-        const { children } = this.props;
+        const { alert, children } = this.props;
         return (
-            <div className="app">
-            	<Header/>
+            <div className="root">
+            	<Header />
             	<MainSection>{children}</MainSection>
+                <Modal show={alert.show}
+                       onHide={this._closeModal.bind(this)}>
+                       {alert.text}
+                </Modal>
             </div>
         );
     }
@@ -23,13 +35,6 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
-}
-
 export default connect(
-    mapStateToProps, 
-	mapDispatchToProps
+    mapStateToProps
 )(App);

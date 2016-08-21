@@ -9,11 +9,11 @@ import { SHOW_REJECT_ALL, SHOW_REJECT_MANUAL, SHOW_REJECT_AUTO } from '../consta
 class TabContent extends Component {
     constructor(props, context) {
         super(props, context);
-        this.state = { key: '0' };
+        this.state = { activeKey: 0 };
     }
 
-    _onSelect(key) {
-        this.setState({key});
+    _onSelect(activeKey) {
+        this.setState({activeKey});
     }
 
     _onClick(primaryOrderType, secondaryOrderType) {
@@ -27,46 +27,46 @@ class TabContent extends Component {
         switch (primaryOrderType) {
             case SHOW_DANGER:
                 entries = [{
-                    type: SHOW_DANGER_ALL,
+                    secondaryOrderType: SHOW_DANGER_ALL,
                     text: '全部'
                 }, {
-                    type: SHOW_DANGER_NO_REACH,
+                    secondaryOrderType: SHOW_DANGER_NO_REACH,
                     text: '超50分钟未送达'
                 }, {
-                    type: SHOW_DANGER_NO_RECEIVE,
+                    secondaryOrderType: SHOW_DANGER_NO_RECEIVE,
                     text: '超7分钟配送员未领单'
                 }, {
-                    type: SHOW_DANGER_NO_SEND,
+                    secondaryOrderType: SHOW_DANGER_NO_SEND,
                     text: '超25分钟未发货'
                 }];
                 break;
             case SHOW_WARN:
                 entries = [{
-                    type: SHOW_WARN_ALL,
+                    secondaryOrderType: SHOW_WARN_ALL,
                     text: '全部'
                 }, {
-                    type: SHOW_WARN_NO_ACCEPT,
+                    secondaryOrderType: SHOW_WARN_NO_ACCEPT,
                     text: '超1分钟未接单'
                 }, {
-                    type: SHOW_WARN_NO_RECEIVE,
+                    secondaryOrderType: SHOW_WARN_NO_RECEIVE,
                     text: '超3分钟配送员未领单'
                 }, {
-                    type: SHOW_WARN_NO_SEND,
+                    secondaryOrderType: SHOW_WARN_NO_SEND,
                     text: '超20分钟未发货'
                 }, {
-                    type: SHOW_WARN_NO_REACH,
+                    secondaryOrderType: SHOW_WARN_NO_REACH,
                     text: '超40分钟未送达'
                 }];
                 break;
             case SHOW_REJECT:
                 entries = [{
-                    type: SHOW_REJECT_ALL,
+                    secondaryOrderType: SHOW_REJECT_ALL,
                     text: '全部'
                 }, {
-                    type: SHOW_REJECT_MANUAL,
+                    secondaryOrderType: SHOW_REJECT_MANUAL,
                     text: '商家主动拒单'
                 }, {
-                    type: SHOW_REJECT_AUTO,
+                    secondaryOrderType: SHOW_REJECT_AUTO,
                     text: '超时自动拒单'
                 }];
                 break;
@@ -76,10 +76,19 @@ class TabContent extends Component {
         }
         return (
             <div className="tab-content">
-                <Nav bsStyle="pills" activeKey={this.state.key} onSelect={this._onSelect.bind(this)}>
-                    {entries.map((entry, index) =>  <NavItem eventKey={index.toString()} onClick={this._onClick.bind(this, primaryOrderType, entry.type)}>{entry.text}</NavItem>)}
+                <Nav bsStyle="pills"
+                     activeKey={this.state.activeKey}
+                     onSelect={this._onSelect.bind(this)}>
+                    {entries.map((entry, index) => 
+                        <NavItem eventKey={index}
+                                 onClick={this._onClick.bind(this, primaryOrderType, entry.secondaryOrderType)}>
+                            {entry.text}
+                        </NavItem>
+                    )}
                 </Nav>
-                <OrderList hideCheckbox={hideCheckbox} orders={orders} actions={actions} />
+                <OrderList hideCheckbox={hideCheckbox}
+                           orders={orders}
+                           actions={actions} />
             </div>
         );
     }

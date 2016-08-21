@@ -2,79 +2,62 @@ import { Component } from 'react';
 import { Checkbox } from 'react-bootstrap';
 import classnames from 'classnames';
 import OrderListItem from './OrderListItem';
-import { SHOW_ALL, SHOW_WILL, SHOW_DID } from '../constants/OrderFilters';
-
-const orderFilters = {
-    [SHOW_ALL]: order => true,
-    [SHOW_WILL]: order => {
-        return true;
-    },    
-    [SHOW_DID]: order => {
-        return false;
-    }
-};
-
-const changeState = {
-    [SHOW_ALL]: function() {
-        this.setState({ 
-            filter: SHOW_ALL,
-            willChecked: false,
-            didChecked: false
-        });
-    },
-    [SHOW_WILL]: function() {
-        this.setState({ 
-            filter: SHOW_WILL,
-            willChecked: true,
-            didChecked: false
-        });
-    },    
-    [SHOW_DID]: function() {
-        this.setState({ 
-            filter: SHOW_DID,
-            willChecked: false,
-            didChecked: true
-        });
-    }
-};
 
 class OrderList extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            filter: SHOW_ALL,
-            willChecked: false,
-            didChecked: false
+            activeIndex: -1
         };
     }
 
-    _onClick(type) {
-        if(this.state[type] == true) {
-            changeState[SHOW_ALL].call(this)
+    _onClick(index) {
+        if(index == this.state.activeIndex){
+            this.setState({
+                activeIndex: -1
+            });
         } else {
-            changeState[type].call(this);
+            this.setState({
+                activeIndex: index,
+            });
         }
     }
 
     render() {
         const { orders, actions, hideCheckbox } = this.props,
-            { filter, willChecked, didChecked } = this.state;
+            { activeIndex } = this.state,
+            entries = [{
+                text: '未催单'
+            }, {
+                text: '已催单'
+            }];
         return (
             <div className="order-list">
             	<div>
                     共23笔订单
-                    <Checkbox className={classnames({hide: hideCheckbox})}
-                              checked={willChecked}
-                              onClick={this._onClick.bind(this, SHOW_WILL)}
-                              inline>未催单</Checkbox>
-                    <Checkbox className={classnames({hide: hideCheckbox})}
-                              checked={didChecked}
-                              onClick={this._onClick.bind(this, SHOW_DID)}
-                              inline>已催单</Checkbox>
+                    {entries.map((entry, index) => {
+                        return (
+                            <Checkbox className={classnames({hide: hideCheckbox})}
+                                      checked={this.state.activeIndex == index ? true: false}
+                                      onClick={this._onClick.bind(this, index)}
+                                      inline>
+                                      {entry.text}
+                            </Checkbox>
+                        );
+                    })}
                 </div>
 		        <ul className="todo-list">
-		            {orders.filter(orderFilters[filter]).map(order =>
-		                <OrderListItem key={order.id} order={order} />
+		            {orders.filter(order => {
+                        switch (activeIndex) {
+                            case -1:
+                                return true;
+                            case 0:
+                                return true;
+                            case 1:
+                                return false;
+                        }    
+                    }).map(order => 
+                        <OrderListItem order={order} />
 		            )}
 		        </ul>
             </div>

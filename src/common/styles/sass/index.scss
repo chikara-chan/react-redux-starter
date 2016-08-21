@@ -2,11 +2,10 @@ html, body, #root {
 	height: 100%;
 }
 
-.app {
+.root {
 	height: 100%;
 	padding-top: 50px;
+	@import 'header';
+	@import 'main';
 }
 
-@import 'header';
-@import 'main';
-@import 'side-bar';

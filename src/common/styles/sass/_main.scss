@@ -1,32 +1,16 @@
-.main {
+main {
 	height: 100%;
 	.left {
+		position: fixed;
 		float: left;
 		width: 200px;
 		height:100%;
 		padding-top: 14px;
 		background:#222d32;
-		.img-1 {
-			position: relative;
-			top: -2px;
-			width: 70px;
-			vertical-align:middle;
-		}
-		span {
-			margin-left: 11px;
-			font-size: 26px;
-			color: #ffffff;
-			letter-spacing: 1.62px;
-			vertical-align: middle;
-		}
-		.img-2 {
-			width: 14px;
-			vertical-align:middle;
-			margin-left: 14px;
-		}
+		@import 'side-bar';
 	}
 	.right {
-		height:100%;
+		min-height: 100%;
 		margin-left: 200px;
 		background: #e6e7eb;
 	}

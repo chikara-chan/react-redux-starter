@@ -9,14 +9,15 @@ class MainSection extends Component {
     render() {
         const { children } = this.props;
         return (
-            <div className="main">
+            <main>
                 <div className="left">
                     <SideBar />
                 </div>
-                <div className="right">
+                <div className="right"
+                     id="container">
                     {children}
                 </div>
-            </div>
+            </main>
         );
     }
 }

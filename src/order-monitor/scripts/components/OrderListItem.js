@@ -29,7 +29,8 @@ class OrderListItem extends Component {
                 <Button onClick={this._openModal.bind(this)}>
                     查看进度
                 </Button>
-                <Modal show={this.state.showModal} onHide={this._closeModal.bind(this)}>
+                <Modal show={this.state.showModal}
+                       onHide={this._closeModal.bind(this)}>
                     hello
                 </Modal>
             </li>

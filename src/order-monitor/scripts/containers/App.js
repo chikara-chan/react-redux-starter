@@ -9,8 +9,8 @@ class App extends Component {
     render() {
         const { orders, actions } = this.props;
         return (
-            <div>
-                <FormSection></FormSection>
+            <div className="app">
+                <FormSection actions={actions}></FormSection>
                 <MainSection orders={orders} actions={actions}></MainSection>
             </div>
         );
