@@ -11,14 +11,14 @@ class SideBar extends Component {
         return (
             <div className="side-bar">
 			  	<PanelGroup accordion="true" >
-			    	<Panel header="客服管理"
+			    	<Panel header="高危订单监控中心"
                            defaultActiveKey="0">
 					    <ListGroup fill>
                             <ListGroupItem className="active">
-                                <a>客服工单管理</a>
+                                <a>高危订单监控</a>
                             </ListGroupItem>
                             <ListGroupItem>
-                                <a>赔付订单管理</a>
+                                <a>订单查询</a>
                             </ListGroupItem>
 					    </ListGroup>
 			    	</Panel>

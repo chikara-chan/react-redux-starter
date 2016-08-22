@@ -1,11 +1,16 @@
-html, body, #root {
+html {
 	height: 100%;
+	body {
+		height: 100%;
+		font-family: PingFangSC-Light, 'helvetica neue', 'hiragino sans gb', arial, 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif;
+		#root {
+			height: 100%;
+			.root {
+				height: 100%;
+				padding-top: 50px;
+				@import 'header';
+				@import 'main';
+			}
+		}
+	}
 }
-
-.root {
-	height: 100%;
-	padding-top: 50px;
-	@import 'header';
-	@import 'main';
-}
-

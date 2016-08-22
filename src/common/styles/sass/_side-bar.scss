@@ -19,7 +19,6 @@
 					line-height: 32px;
 					font-weight: normal;
 					text-decoration: none;
-					cursor: default;
 					&::after {
 						content: '';
 						position: absolute;
@@ -65,7 +64,6 @@
 						color:#ffffff;
 						line-height: 34px;
 						text-decoration: none;
-						cursor: default;
 						&::before {
 							content: '·';
 							position: absolute;

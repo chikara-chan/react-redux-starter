@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Header from '../components/Header';
 import FormSection from '../components/FormSection';
 import MainSection from '../components/MainSection';
 import * as actions from '../actions';
@@ -10,6 +11,7 @@ class App extends Component {
         const { orders, actions } = this.props;
         return (
             <div className="app">
+                <Header />
                 <FormSection actions={actions}></FormSection>
                 <MainSection orders={orders} actions={actions}></MainSection>
             </div>

@@ -1,5 +1,29 @@
-.app .form-section .datetime-wrap {
-  position: relative; }
+.app .header {
+  height: 60px;
+  line-height: 60px; }
+  .app .header .breadcrumb {
+    height: 100%;
+    margin-bottom: 0;
+    padding: 0 20px; }
+    .app .header .breadcrumb li {
+      font-size: 12px;
+      margin: auto 20px; }
+      .app .header .breadcrumb li a {
+        color: #333333;
+        text-decoration: none;
+        cursor: default; }
+      .app .header .breadcrumb li.active a {
+        color: #999999; }
+      .app .header .breadcrumb li::before {
+        display: none; }
+
+.app .form-section {
+  padding: 15px; }
+  .app .form-section .form-inline {
+    background: #fff;
+    padding: 20px; }
+    .app .form-section .form-inline .datetime-wrap {
+      position: relative; }
 
 .app .main-section .nav {
   height: 42px; }

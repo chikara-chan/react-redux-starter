@@ -1,5 +1,10 @@
 .form-section {
-	.datetime-wrap {
-		position: relative;
+	padding: 15px;
+	.form-inline {
+		background: #fff;
+		padding: 20px;
+		.datetime-wrap {
+			position: relative;
+		}
 	}
 }
