@@ -11,6 +11,9 @@
 					color:#288de1;
 					border:1px solid #92c1e9;
 					z-index: 1;
+					&:hover {
+						background: #dfefff;
+					}
 				}
 			}
 			&+li {

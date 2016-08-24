@@ -96,6 +96,8 @@
               color: #288de1;
               border: 1px solid #92c1e9;
               z-index: 1; }
+              .app .main-section .tab-wrap .sub-nav > .nav li.active a:hover {
+                background: #dfefff; }
             .app .main-section .tab-wrap .sub-nav > .nav li + li {
               margin-left: -1px; }
             .app .main-section .tab-wrap .sub-nav > .nav li:first-child a {
