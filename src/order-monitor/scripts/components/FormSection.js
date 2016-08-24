@@ -13,8 +13,6 @@ class FormSection extends Component {
         e.preventDefault();
         const { actions } = this.props;
         const data = {
-            start: this.refs.start.state.inputValue,
-            end: this.refs.end.state.inputValue,
             city: findDOMNode(this.refs.city).value,
             classify: findDOMNode(this.refs.classify).value,
             keywords: findDOMNode(this.refs.keywords).value,
@@ -28,22 +26,10 @@ class FormSection extends Component {
             <section className="form-section">
                 <Form inline>
                     <FormGroup>
-                        <ControlLabel>下单时间</ControlLabel>
-                        <FormControl.Static className="datetime-wrap">
-                            <DateTimeField ref="start"
-                                           inputFormat="YYYY-MM-DD  h:mm A" />
-                        </FormControl.Static>
-                        <FormControl.Static className="datetime-wrap">
-                            <DateTimeField ref="end"
-                                           inputFormat="YYYY-MM-DD  h:mm A" />
-                        </FormControl.Static>
-                    </FormGroup>
-                    <FormGroup>
-                        <ControlLabel>城市</ControlLabel>
                         <FormControl ref="city"
                                      componentClass="select"
                                      placeholder="select">
-                            <option value="select">全国</option>
+                            <option value="select">全部城市</option>
                             <option value="other">北京</option>
                             <option value="other">广州</option>
                             <option value="other">深圳</option>
@@ -51,6 +37,8 @@ class FormSection extends Component {
                             <option value="other">杭州</option>
                             <option value="other">苏州</option>
                         </FormControl>
+                    </FormGroup>
+                    <FormGroup>
                         <FormControl ref="classify"
                                      componentClass="select"
                                      placeholder="select">
@@ -64,11 +52,10 @@ class FormSection extends Component {
                                      placeholder="" />
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>订单来源</ControlLabel>
                         <FormControl ref="source"
                                      componentClass="select"
                                      placeholder="select">
-                            <option value="select">全部</option>
+                            <option value="select">全部订单来源</option>
                             <option value="other">闪电购</option>
                             <option value="other">手淘</option>
                             <option value="other">美团</option>
@@ -79,7 +66,7 @@ class FormSection extends Component {
                     </FormGroup>
                     <Button type="submit"
                             onClick={this._onSubmit.bind(this)}>
-                        查询
+                        查 询
                     </Button>
                 </Form>
             </section>

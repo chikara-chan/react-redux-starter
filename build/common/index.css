@@ -3,7 +3,8 @@ html {
   height: 100%; }
   html body {
     height: 100%;
-    font-family: PingFangSC-Light, 'helvetica neue', 'hiragino sans gb', arial, 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif; }
+    font-family: PingFangSC-Light, 'helvetica neue', 'hiragino sans gb', arial, 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif;
+    font-size: 12px; }
     html body #root {
       height: 100%; }
       html body #root .root {
@@ -12,13 +13,12 @@ html {
         html body #root .root header {
           position: fixed;
           top: 0;
-          z-index: 3;
-          width: 100%;
-          height: 50px; }
+          z-index: 4;
+          width: 100%; }
           html body #root .root header .left {
             float: left;
             width: 200px;
-            height: 100%;
+            height: 50px;
             padding-left: 20px;
             background: #327eab;
             line-height: 50px; }
@@ -36,7 +36,7 @@ html {
               width: 14px;
               margin-left: 14px; }
           html body #root .root header .right {
-            height: 100%;
+            height: 50px;
             margin-left: 200px;
             background: #378cbe; }
             html body #root .root header .right img {
@@ -51,7 +51,6 @@ html {
               html body #root .root header .right .menu .dropdown-toggle {
                 height: 40px;
                 padding-right: 28px;
-                font-size: 12px;
                 color: #ffffff;
                 line-height: 20px;
                 background-color: inherit; }
@@ -67,34 +66,34 @@ html {
                   background-color: #f5f5f5; }
         html body #root .root main {
           height: 100%; }
-          html body #root .root main .left {
+          html body #root .root main > .left {
             position: fixed;
             float: left;
             width: 200px;
             height: 100%;
             padding-top: 14px;
             background: #222d32; }
-            html body #root .root main .left .side-bar .panel {
+            html body #root .root main > .left .side-bar .panel {
               background: inherit;
               border: none; }
-              html body #root .root main .left .side-bar .panel .panel-heading {
+              html body #root .root main > .left .side-bar .panel .panel-heading {
                 height: 32px;
                 padding: 0;
                 background: #1e282c;
                 border-left: #3995cb 3px solid; }
-                html body #root .root main .left .side-bar .panel .panel-heading h4 {
+                html body #root .root main > .left .side-bar .panel .panel-heading h4 {
                   height: 100%; }
-                  html body #root .root main .left .side-bar .panel .panel-heading h4 a {
+                  html body #root .root main > .left .side-bar .panel .panel-heading h4 a {
                     position: relative;
                     display: block;
                     height: 100%;
                     padding-left: 29px;
-                    font-size: 12px;
                     color: #ffffff;
+                    font-size: 12px;
                     line-height: 32px;
                     font-weight: normal;
                     text-decoration: none; }
-                    html body #root .root main .left .side-bar .panel .panel-heading h4 a::after {
+                    html body #root .root main > .left .side-bar .panel .panel-heading h4 a::after {
                       content: '';
                       position: absolute;
                       top: 12px;
@@ -105,36 +104,35 @@ html {
                       border-top: 1px solid #565d61;
                       border-right: 1px solid #565d61;
                       transition: all linear 0.3s; }
-                    html body #root .root main .left .side-bar .panel .panel-heading h4 a[aria-expanded='true']::after {
+                    html body #root .root main > .left .side-bar .panel .panel-heading h4 a[aria-expanded='true']::after {
                       transform: rotate(-45deg); }
-                    html body #root .root main .left .side-bar .panel .panel-heading h4 a[aria-expanded='false']::after {
+                    html body #root .root main > .left .side-bar .panel .panel-heading h4 a[aria-expanded='false']::after {
                       transform: rotate(135deg); }
-              html body #root .root main .left .side-bar .panel .panel-collapse .list-group {
+              html body #root .root main > .left .side-bar .panel .panel-collapse .list-group {
                 border: none; }
-                html body #root .root main .left .side-bar .panel .panel-collapse .list-group .list-group-item {
+                html body #root .root main > .left .side-bar .panel .panel-collapse .list-group .list-group-item {
                   background: #1b2428;
                   height: 34px;
                   padding: 0;
                   border: none; }
-                  html body #root .root main .left .side-bar .panel .panel-collapse .list-group .list-group-item.active {
+                  html body #root .root main > .left .side-bar .panel .panel-collapse .list-group .list-group-item.active {
                     background: #2b3b41; }
-                    html body #root .root main .left .side-bar .panel .panel-collapse .list-group .list-group-item.active a {
+                    html body #root .root main > .left .side-bar .panel .panel-collapse .list-group .list-group-item.active a {
                       opacity: 1;
                       color: #ffffff; }
-                  html body #root .root main .left .side-bar .panel .panel-collapse .list-group .list-group-item a {
+                  html body #root .root main > .left .side-bar .panel .panel-collapse .list-group .list-group-item a {
                     position: relative;
                     display: block;
                     padding-left: 32px;
                     opacity: 0.5;
-                    font-size: 12px;
                     color: #ffffff;
                     line-height: 34px;
                     text-decoration: none; }
-                    html body #root .root main .left .side-bar .panel .panel-collapse .list-group .list-group-item a::before {
+                    html body #root .root main > .left .side-bar .panel .panel-collapse .list-group .list-group-item a::before {
                       content: '·';
                       position: absolute;
                       left: 23px; }
-          html body #root .root main .right {
+          html body #root .root main > .right {
             min-height: 100%;
             margin-left: 200px;
             background: #e6e7eb; }

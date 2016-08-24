@@ -16,7 +16,7 @@ webpackJsonp([0,1],[
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _common = __webpack_require__(184);
+	var _common = __webpack_require__(185);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -221,7 +221,7 @@ webpackJsonp([0,1],[
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _actions = __webpack_require__(177);
+	var _actions = __webpack_require__(178);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -403,8 +403,6 @@ webpackJsonp([0,1],[
 	            var actions = this.props.actions;
 
 	            var data = {
-	                start: this.refs.start.state.inputValue,
-	                end: this.refs.end.state.inputValue,
 	                city: (0, _reactDom.findDOMNode)(this.refs.city).value,
 	                classify: (0, _reactDom.findDOMNode)(this.refs.classify).value,
 	                keywords: (0, _reactDom.findDOMNode)(this.refs.keywords).value,
@@ -425,32 +423,6 @@ webpackJsonp([0,1],[
 	                        _reactBootstrap.FormGroup,
 	                        null,
 	                        React.createElement(
-	                            _reactBootstrap.ControlLabel,
-	                            null,
-	                            '下单时间'
-	                        ),
-	                        React.createElement(
-	                            _reactBootstrap.FormControl.Static,
-	                            { className: 'datetime-wrap' },
-	                            React.createElement(_reactBootstrapDatetimepicker2.default, { ref: 'start',
-	                                inputFormat: 'YYYY-MM-DD  h:mm A' })
-	                        ),
-	                        React.createElement(
-	                            _reactBootstrap.FormControl.Static,
-	                            { className: 'datetime-wrap' },
-	                            React.createElement(_reactBootstrapDatetimepicker2.default, { ref: 'end',
-	                                inputFormat: 'YYYY-MM-DD  h:mm A' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        _reactBootstrap.FormGroup,
-	                        null,
-	                        React.createElement(
-	                            _reactBootstrap.ControlLabel,
-	                            null,
-	                            '城市'
-	                        ),
-	                        React.createElement(
 	                            _reactBootstrap.FormControl,
 	                            { ref: 'city',
 	                                componentClass: 'select',
@@ -458,7 +430,7 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'option',
 	                                { value: 'select' },
-	                                '全国'
+	                                '全部城市'
 	                            ),
 	                            React.createElement(
 	                                'option',
@@ -490,7 +462,11 @@ webpackJsonp([0,1],[
 	                                { value: 'other' },
 	                                '苏州'
 	                            )
-	                        ),
+	                        )
+	                    ),
+	                    React.createElement(
+	                        _reactBootstrap.FormGroup,
+	                        null,
 	                        React.createElement(
 	                            _reactBootstrap.FormControl,
 	                            { ref: 'classify',
@@ -525,11 +501,6 @@ webpackJsonp([0,1],[
 	                        _reactBootstrap.FormGroup,
 	                        null,
 	                        React.createElement(
-	                            _reactBootstrap.ControlLabel,
-	                            null,
-	                            '订单来源'
-	                        ),
-	                        React.createElement(
 	                            _reactBootstrap.FormControl,
 	                            { ref: 'source',
 	                                componentClass: 'select',
@@ -537,7 +508,7 @@ webpackJsonp([0,1],[
 	                            React.createElement(
 	                                'option',
 	                                { value: 'select' },
-	                                '全部'
+	                                '全部订单来源'
 	                            ),
 	                            React.createElement(
 	                                'option',
@@ -575,7 +546,7 @@ webpackJsonp([0,1],[
 	                        _reactBootstrap.Button,
 	                        { type: 'submit',
 	                            onClick: this._onSubmit.bind(this) },
-	                        '查询'
+	                        '查 询'
 	                    )
 	                )
 	            );
@@ -17187,11 +17158,19 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _TabContent = __webpack_require__(169);
+	var _classnames = __webpack_require__(169);
 
-	var _TabContent2 = _interopRequireDefault(_TabContent);
+	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _PrimaryOrderTypes = __webpack_require__(173);
+	var _SubNav = __webpack_require__(170);
+
+	var _SubNav2 = _interopRequireDefault(_SubNav);
+
+	var _OrderList = __webpack_require__(175);
+
+	var _OrderList2 = _interopRequireDefault(_OrderList);
+
+	var _PrimaryOrderTypes = __webpack_require__(171);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17211,12 +17190,39 @@ webpackJsonp([0,1],[
 
 	        _this.state = {
 	            activeKey: 0,
-	            primaryOrderType: _PrimaryOrderTypes.SHOW_DANGER
+	            primaryOrderType: _PrimaryOrderTypes.SHOW_DANGER,
+	            activeCheckboxIndex: -1,
+	            offsetTop: 0
 	        };
 	        return _this;
 	    }
 
 	    _createClass(MainSection, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            window.addEventListener('scroll', this._onScroll.bind(this));
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            window.removeEventListener('scroll', this._onScroll);
+	        }
+	    }, {
+	        key: '_onScroll',
+	        value: function _onScroll() {
+	            var scrollTop = document.body.scrollTop;
+
+	            if (scrollTop >= 160) {
+	                this.setState({
+	                    offsetTop: scrollTop - 160
+	                });
+	            } else {
+	                this.setState({
+	                    offsetTop: 0
+	                });
+	            }
+	        }
+	    }, {
 	        key: '_onSelect',
 	        value: function _onSelect(eventKey) {
 	            this.setState({ activeKey: eventKey });
@@ -17231,6 +17237,21 @@ webpackJsonp([0,1],[
 	            this.refs.tabContent.setState({ activeKey: 0 });
 	        }
 	    }, {
+	        key: '_onClickCheckbox',
+	        value: function _onClickCheckbox(index) {
+	            var activeCheckboxIndex = this.state.activeCheckboxIndex;
+
+	            if (index == activeCheckboxIndex) {
+	                this.setState({
+	                    activeCheckboxIndex: -1
+	                });
+	            } else {
+	                this.setState({
+	                    activeCheckboxIndex: index
+	                });
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -17241,40 +17262,84 @@ webpackJsonp([0,1],[
 	            var _state = this.state;
 	            var activeKey = _state.activeKey;
 	            var primaryOrderType = _state.primaryOrderType;
-	            var entries = [{
+	            var activeCheckboxIndex = _state.activeCheckboxIndex;
+	            var offsetTop = _state.offsetTop;
+
+	            var navEntries = [{
 	                primaryOrderType: _PrimaryOrderTypes.SHOW_DANGER,
-	                text: '高危订单'
+	                text: '高危订单(23)'
 	            }, {
 	                primaryOrderType: _PrimaryOrderTypes.SHOW_WARN,
-	                text: '预警订单'
+	                text: '预警订单(45)'
 	            }, {
 	                primaryOrderType: _PrimaryOrderTypes.SHOW_REJECT,
-	                text: '已拒单'
+	                text: '已拒单(23)'
 	            }, {
 	                primaryOrderType: _PrimaryOrderTypes.SHOW_TIMEOUT,
-	                text: '超时送达'
+	                text: '超时送达(23)'
+	            }];
+	            var checkboxEntries = [{
+	                text: '未催单'
+	            }, {
+	                text: '已催单'
 	            }];
 	            return React.createElement(
 	                'section',
 	                { className: 'main-section' },
 	                React.createElement(
-	                    _reactBootstrap.Nav,
-	                    { bsStyle: 'tabs',
-	                        activeKey: this.state.activeKey,
-	                        onSelect: this._onSelect.bind(this) },
-	                    entries.map(function (entry, index) {
-	                        return React.createElement(
-	                            _reactBootstrap.NavItem,
-	                            { eventKey: index,
-	                                onClick: _this2._onClick.bind(_this2, entry.primaryOrderType) },
-	                            entry.text
-	                        );
-	                    })
+	                    'div',
+	                    { className: 'tab-wrap', style: { top: offsetTop } },
+	                    React.createElement(
+	                        _reactBootstrap.Nav,
+	                        { bsStyle: 'tabs',
+	                            activeKey: this.state.activeKey,
+	                            onSelect: this._onSelect.bind(this) },
+	                        navEntries.map(function (entry, index) {
+	                            return React.createElement(
+	                                _reactBootstrap.NavItem,
+	                                { eventKey: index,
+	                                    onClick: _this2._onClick.bind(_this2, entry.primaryOrderType) },
+	                                entry.text
+	                            );
+	                        })
+	                    ),
+	                    React.createElement(_SubNav2.default, { ref: 'tabContent',
+	                        orders: orders,
+	                        primaryOrderType: primaryOrderType,
+	                        actions: actions }),
+	                    React.createElement(
+	                        _reactBootstrap.Alert,
+	                        { bsStyle: 'warning' },
+	                        '有新高危订单',
+	                        React.createElement(
+	                            'a',
+	                            { href: '#', className: 'alert-link' },
+	                            '立即刷新',
+	                            React.createElement('i', { className: 'fa fa-angle-right', 'aria-hidden': 'true' }),
+	                            React.createElement('i', { className: 'fa fa-angle-right', 'aria-hidden': 'true' })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'filter-wrap' },
+	                        React.createElement(
+	                            'span',
+	                            null,
+	                            '共23笔订单'
+	                        ),
+	                        checkboxEntries.map(function (entry, index) {
+	                            return React.createElement(
+	                                _reactBootstrap.Checkbox,
+	                                { className: (0, _classnames2.default)({ hide: activeKey == 0 ? false : true }),
+	                                    checked: activeCheckboxIndex == index ? true : false,
+	                                    onClick: _this2._onClickCheckbox.bind(_this2, index),
+	                                    inline: true },
+	                                entry.text
+	                            );
+	                        })
+	                    )
 	                ),
-	                React.createElement(_TabContent2.default, { hideCheckbox: activeKey == 0 ? false : true,
-	                    ref: 'tabContent',
-	                    orders: orders,
-	                    primaryOrderType: primaryOrderType,
+	                React.createElement(_OrderList2.default, { orders: orders,
 	                    actions: actions })
 	            );
 	        }
@@ -17289,6 +17354,60 @@ webpackJsonp([0,1],[
 /* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -17301,17 +17420,17 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _OrderList = __webpack_require__(170);
+	var _classnames = __webpack_require__(169);
 
-	var _OrderList2 = _interopRequireDefault(_OrderList);
+	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _PrimaryOrderTypes = __webpack_require__(173);
+	var _PrimaryOrderTypes = __webpack_require__(171);
 
-	var _DangerOrderTypes = __webpack_require__(174);
+	var _DangerOrderTypes = __webpack_require__(172);
 
-	var _WarnOrderTypes = __webpack_require__(175);
+	var _WarnOrderTypes = __webpack_require__(173);
 
-	var _RejectOrderTypes = __webpack_require__(176);
+	var _RejectOrderTypes = __webpack_require__(174);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17321,19 +17440,19 @@ webpackJsonp([0,1],[
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var TabContent = function (_Component) {
-	    _inherits(TabContent, _Component);
+	var SubNav = function (_Component) {
+	    _inherits(SubNav, _Component);
 
-	    function TabContent(props, context) {
-	        _classCallCheck(this, TabContent);
+	    function SubNav(props, context) {
+	        _classCallCheck(this, SubNav);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TabContent).call(this, props, context));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SubNav).call(this, props, context));
 
 	        _this.state = { activeKey: 0 };
 	        return _this;
 	    }
 
-	    _createClass(TabContent, [{
+	    _createClass(SubNav, [{
 	        key: '_onSelect',
 	        value: function _onSelect(activeKey) {
 	            this.setState({ activeKey: activeKey });
@@ -17354,7 +17473,6 @@ webpackJsonp([0,1],[
 	            var orders = _props.orders;
 	            var actions = _props.actions;
 	            var primaryOrderType = _props.primaryOrderType;
-	            var hideCheckbox = _props.hideCheckbox;
 
 	            var entries = void 0;
 	            switch (primaryOrderType) {
@@ -17409,7 +17527,7 @@ webpackJsonp([0,1],[
 	            }
 	            return React.createElement(
 	                'div',
-	                { className: 'tab-content' },
+	                { className: (0, _classnames2.default)('sub-nav', { hide: entries.length == 0 ? true : false }) },
 	                React.createElement(
 	                    _reactBootstrap.Nav,
 	                    { bsStyle: 'pills',
@@ -17423,21 +17541,74 @@ webpackJsonp([0,1],[
 	                            entry.text
 	                        );
 	                    })
-	                ),
-	                React.createElement(_OrderList2.default, { hideCheckbox: hideCheckbox,
-	                    orders: orders,
-	                    actions: actions })
+	                )
 	            );
 	        }
 	    }]);
 
-	    return TabContent;
+	    return SubNav;
 	}(_react.Component);
 
-	exports.default = TabContent;
+	exports.default = SubNav;
 
 /***/ },
-/* 170 */
+/* 171 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SHOW_DANGER = exports.SHOW_DANGER = 'GET_DANGER'; //高危订单
+	var SHOW_WARN = exports.SHOW_WARN = 'GET_WARN'; //预警订单
+	var SHOW_REJECT = exports.SHOW_REJECT = 'GET_REJECT'; //已拒单
+	var SHOW_TIMEOUT = exports.SHOW_TIMEOUT = 'GET_TIMEOUT'; //超时送达
+
+/***/ },
+/* 172 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SHOW_DANGER_ALL = exports.SHOW_DANGER_ALL = 'SHOW_DANGER_ALL'; //全部
+	var SHOW_DANGER_NO_RECEIVE = exports.SHOW_DANGER_NO_RECEIVE = 'SHOW_DANGER_NO_RECEIVE'; //超7分钟配送员为领单
+	var SHOW_DANGER_NO_SEND = exports.SHOW_DANGER_NO_SEND = 'SHOW_DANGER_NO_SEND'; //超25分钟未发货
+	var SHOW_DANGER_NO_REACH = exports.SHOW_DANGER_NO_REACH = 'SHOW_DANGER_NO_REACH'; //超50分钟未送达
+
+/***/ },
+/* 173 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SHOW_WARN_ALL = exports.SHOW_WARN_ALL = 'SHOW_WARN_ALL'; //全部
+	var SHOW_WARN_NO_ACCEPT = exports.SHOW_WARN_NO_ACCEPT = 'SHOW_WARN_MANUAL'; //超1分钟未接单
+	var SHOW_WARN_NO_RECEIVE = exports.SHOW_WARN_NO_RECEIVE = 'SHOW_WARN_AUTO'; //超3分钟配送员未领单
+	var SHOW_WARN_NO_SEND = exports.SHOW_WARN_NO_SEND = 'SHOW_WARN_AUTO'; //超20分钟未发货
+	var SHOW_WARN_NO_REACH = exports.SHOW_WARN_NO_REACH = 'SHOW_WARN_AUTO'; //超40分钟未送达
+
+/***/ },
+/* 174 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SHOW_REJECT_ALL = exports.SHOW_REJECT_ALL = 'SHOW_REJECT_ALL'; //全部
+	var SHOW_REJECT_MANUAL = exports.SHOW_REJECT_MANUAL = 'SHOW_REJECT_MANUAL'; //商家主动拒单
+	var SHOW_REJECT_AUTO = exports.SHOW_REJECT_AUTO = 'SHOW_REJECT_AUTO'; //超时自动拒单
+
+/***/ },
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17450,13 +17621,7 @@ webpackJsonp([0,1],[
 
 	var _react = __webpack_require__(10);
 
-	var _reactBootstrap = __webpack_require__(12);
-
-	var _classnames = __webpack_require__(171);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _OrderListItem = __webpack_require__(172);
+	var _OrderListItem = __webpack_require__(176);
 
 	var _OrderListItem2 = _interopRequireDefault(_OrderListItem);
 
@@ -17483,51 +17648,17 @@ webpackJsonp([0,1],[
 	    }
 
 	    _createClass(OrderList, [{
-	        key: '_onClick',
-	        value: function _onClick(index) {
-	            if (index == this.state.activeIndex) {
-	                this.setState({
-	                    activeIndex: -1
-	                });
-	            } else {
-	                this.setState({
-	                    activeIndex: index
-	                });
-	            }
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-
 	            var _props = this.props;
 	            var orders = _props.orders;
 	            var actions = _props.actions;
 	            var hideCheckbox = _props.hideCheckbox;
 	            var activeIndex = this.state.activeIndex;
-	            var entries = [{
-	                text: '未催单'
-	            }, {
-	                text: '已催单'
-	            }];
+
 	            return React.createElement(
 	                'div',
 	                { className: 'order-list' },
-	                React.createElement(
-	                    'div',
-	                    null,
-	                    '共23笔订单',
-	                    entries.map(function (entry, index) {
-	                        return React.createElement(
-	                            _reactBootstrap.Checkbox,
-	                            { className: (0, _classnames2.default)({ hide: hideCheckbox }),
-	                                checked: _this2.state.activeIndex == index ? true : false,
-	                                onClick: _this2._onClick.bind(_this2, index),
-	                                inline: true },
-	                            entry.text
-	                        );
-	                    })
-	                ),
 	                React.createElement(
 	                    'ul',
 	                    { className: 'todo-list' },
@@ -17554,61 +17685,7 @@ webpackJsonp([0,1],[
 	exports.default = OrderList;
 
 /***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2016 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-	/* global define */
-
-	(function () {
-		'use strict';
-
-		var hasOwn = {}.hasOwnProperty;
-
-		function classNames () {
-			var classes = [];
-
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
-
-				var argType = typeof arg;
-
-				if (argType === 'string' || argType === 'number') {
-					classes.push(arg);
-				} else if (Array.isArray(arg)) {
-					classes.push(classNames.apply(null, arg));
-				} else if (argType === 'object') {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				}
-			}
-
-			return classes.join(' ');
-		}
-
-		if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else if (true) {
-			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else {
-			window.classNames = classNames;
-		}
-	}());
-
-
-/***/ },
-/* 172 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17622,6 +17699,12 @@ webpackJsonp([0,1],[
 	var _react = __webpack_require__(10);
 
 	var _reactBootstrap = __webpack_require__(12);
+
+	var _PopupModal = __webpack_require__(177);
+
+	var _PopupModal2 = _interopRequireDefault(_PopupModal);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17665,18 +17748,184 @@ webpackJsonp([0,1],[
 	            return React.createElement(
 	                'li',
 	                { className: 'order-list-item' },
-	                order.text,
 	                React.createElement(
-	                    _reactBootstrap.Button,
-	                    { onClick: this._openModal.bind(this) },
-	                    '查看进度'
+	                    'div',
+	                    { className: 'header' },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'status' },
+	                        '未催单'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'text' },
+	                        '订单超',
+	                        React.createElement(
+	                            'strong',
+	                            null,
+	                            '50'
+	                        ),
+	                        '分钟未送达，请立即介入'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'serial' },
+	                        '#21 闪电购订单'
+	                    )
 	                ),
 	                React.createElement(
-	                    _reactBootstrap.Modal,
-	                    { show: this.state.showModal,
-	                        onHide: this._closeModal.bind(this) },
-	                    'hello'
-	                )
+	                    'div',
+	                    { className: 'progress-section' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'main' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'left' },
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title strong' },
+	                            '订单耗时：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content time' },
+	                            '51:21'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '订单状态：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '待送达'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '店铺名称：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '杭州西湖华丽超市华丽超市华丽超市华丽超市 华丽超市华丽超市华丽  [12435]'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'right' },
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title strong' },
+	                            '订单ID：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content number' },
+	                            '23423523523524'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '支付时间：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '2016-08-16   14 : 20 : 14'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '商品信息：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '共13件 金额：￥139.00'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '收件人：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '王大锤-18797257253'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'title' },
+	                            '收货地址：'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            '杭州市西湖区蒋村商务中心幢层很长很长很长很长很长很长很很很长'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'footer' },
+	                    React.createElement(
+	                        _reactBootstrap.Button,
+	                        { bsStyle: 'primary', onClick: this._openModal.bind(this) },
+	                        '催 单'
+	                    ),
+	                    React.createElement(
+	                        _reactBootstrap.Button,
+	                        null,
+	                        '创建工单'
+	                    ),
+	                    React.createElement(
+	                        _reactBootstrap.Button,
+	                        null,
+	                        '取消订单'
+	                    )
+	                ),
+	                React.createElement(_PopupModal2.default, { showModal: this.state.showModal,
+	                    closeModal: this._closeModal.bind(this) })
 	            );
 	        }
 	    }]);
@@ -17687,63 +17936,376 @@ webpackJsonp([0,1],[
 	exports.default = OrderListItem;
 
 /***/ },
-/* 173 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SHOW_DANGER = exports.SHOW_DANGER = 'GET_DANGER'; //高危订单
-	var SHOW_WARN = exports.SHOW_WARN = 'GET_WARN'; //预警订单
-	var SHOW_REJECT = exports.SHOW_REJECT = 'GET_REJECT'; //已拒单
-	var SHOW_TIMEOUT = exports.SHOW_TIMEOUT = 'GET_TIMEOUT'; //超时送达
-
-/***/ },
-/* 174 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SHOW_DANGER_ALL = exports.SHOW_DANGER_ALL = 'SHOW_DANGER_ALL'; //全部
-	var SHOW_DANGER_NO_RECEIVE = exports.SHOW_DANGER_NO_RECEIVE = 'SHOW_DANGER_NO_RECEIVE'; //超7分钟配送员为领单
-	var SHOW_DANGER_NO_SEND = exports.SHOW_DANGER_NO_SEND = 'SHOW_DANGER_NO_SEND'; //超25分钟未发货
-	var SHOW_DANGER_NO_REACH = exports.SHOW_DANGER_NO_REACH = 'SHOW_DANGER_NO_REACH'; //超50分钟未送达
-
-/***/ },
-/* 175 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SHOW_WARN_ALL = exports.SHOW_WARN_ALL = 'SHOW_WARN_ALL'; //全部
-	var SHOW_WARN_NO_ACCEPT = exports.SHOW_WARN_NO_ACCEPT = 'SHOW_WARN_MANUAL'; //超1分钟未接单
-	var SHOW_WARN_NO_RECEIVE = exports.SHOW_WARN_NO_RECEIVE = 'SHOW_WARN_AUTO'; //超3分钟配送员未领单
-	var SHOW_WARN_NO_SEND = exports.SHOW_WARN_NO_SEND = 'SHOW_WARN_AUTO'; //超20分钟未发货
-	var SHOW_WARN_NO_REACH = exports.SHOW_WARN_NO_REACH = 'SHOW_WARN_AUTO'; //超40分钟未送达
-
-/***/ },
-/* 176 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SHOW_REJECT_ALL = exports.SHOW_REJECT_ALL = 'SHOW_REJECT_ALL'; //全部
-	var SHOW_REJECT_MANUAL = exports.SHOW_REJECT_MANUAL = 'SHOW_REJECT_MANUAL'; //商家主动拒单
-	var SHOW_REJECT_AUTO = exports.SHOW_REJECT_AUTO = 'SHOW_REJECT_AUTO'; //超时自动拒单
-
-/***/ },
 /* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(10);
+
+	var _reactBootstrap = __webpack_require__(12);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PopupModal = function (_Component) {
+	    _inherits(PopupModal, _Component);
+
+	    function PopupModal(props, context) {
+	        _classCallCheck(this, PopupModal);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(PopupModal).call(this, props, context));
+	    }
+
+	    _createClass(PopupModal, [{
+	        key: 'render',
+	        value: function render() {
+	            var order = this.props.order;
+
+	            return React.createElement(
+	                _reactBootstrap.Modal,
+	                { className: 'popup-modal',
+	                    show: this.props.showModal,
+	                    onHide: this.props.closeModal },
+	                React.createElement(
+	                    'div',
+	                    { className: 'header' },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'text' },
+	                        '配送员超过7分钟未领单，请立即联系配送员'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'tag' },
+	                        '闪电购订单'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'serial' },
+	                        '#17'
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'progress-section' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'part' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '支付成功'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'main' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'board has-bg' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'left' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title strong' },
+	                                '催单对象：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content strong' },
+	                                '张三三三 (第三方站点)-18752562356'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '兜底闪电侠：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '王大锤-18797257253'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '商家电话：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '王大锤-18797257253'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'right' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '负责小二：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '王大锤-18797257253'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '小二主管：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '王大锤-18797257253'
+	                            )
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'board' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'left' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '店铺名称：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '华丽超市名'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '订单ID：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content number' },
+	                                '389238347838'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '支付时间：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '2016-08-16   14 : 20 : 14'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'right' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '收货地址：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '杭州市西湖区蒋村商务中心'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '收件人：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content', pan: true },
+	                                '王大锤-18797257253'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'title' },
+	                                '商品信息：'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'content' },
+	                                '共13件   金额：￥139.00'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'record' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'left' },
+	                        '催单记录：'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'right' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'part' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'operator' },
+	                                '张晓芳',
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    '（2016.08.10  16:23:45）'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'status' },
+	                                '已联系第三方站点，处理中'
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'remark' },
+	                                '备注信息备注信息备注信息备注信息备注信息备注信息备注信息备注信息备注信息备注信息'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'part' },
+	                            React.createElement(
+	                                'p',
+	                                { className: 'operator' },
+	                                '张晓芳',
+	                                React.createElement(
+	                                    'span',
+	                                    null,
+	                                    '（2016.08.10  16:23:45）'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'status' },
+	                                '已联系第三方站点，处理中'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form' },
+	                    React.createElement(
+	                        _reactBootstrap.Form,
+	                        { horizontal: true },
+	                        React.createElement(
+	                            _reactBootstrap.FormGroup,
+	                            null,
+	                            React.createElement(
+	                                'label',
+	                                null,
+	                                React.createElement(
+	                                    'strong',
+	                                    null,
+	                                    '※'
+	                                ),
+	                                ' 催单结果：'
+	                            ),
+	                            React.createElement(
+	                                _reactBootstrap.FormControl,
+	                                { componentClass: 'select',
+	                                    placeholder: 'select' },
+	                                React.createElement(
+	                                    'option',
+	                                    { value: 'select' },
+	                                    '已联系第三方站定，处理中'
+	                                ),
+	                                React.createElement(
+	                                    'option',
+	                                    { value: 'other' },
+	                                    '店铺ID'
+	                                ),
+	                                React.createElement(
+	                                    'option',
+	                                    { value: 'other' },
+	                                    '小二ID'
+	                                ),
+	                                React.createElement(
+	                                    'option',
+	                                    { value: 'other' },
+	                                    '小二主管'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            _reactBootstrap.FormGroup,
+	                            null,
+	                            React.createElement(
+	                                'label',
+	                                null,
+	                                '备注：'
+	                            ),
+	                            React.createElement(_reactBootstrap.FormControl, { componentClass: 'textarea' })
+	                        ),
+	                        React.createElement(
+	                            _reactBootstrap.FormGroup,
+	                            null,
+	                            React.createElement(
+	                                _reactBootstrap.Button,
+	                                { type: 'submit' },
+	                                '保 存'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return PopupModal;
+	}(_react.Component);
+
+	exports.default = PopupModal;
+
+/***/ },
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17754,7 +18316,7 @@ webpackJsonp([0,1],[
 	exports.search = search;
 	exports.getOrder = getOrder;
 
-	var _superagent = __webpack_require__(178);
+	var _superagent = __webpack_require__(179);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -17762,15 +18324,15 @@ webpackJsonp([0,1],[
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
-	var _PrimaryOrderTypes = __webpack_require__(173);
+	var _PrimaryOrderTypes = __webpack_require__(171);
 
-	var _DangerOrderTypes = __webpack_require__(174);
+	var _DangerOrderTypes = __webpack_require__(172);
 
-	var _WarnOrderTypes = __webpack_require__(175);
+	var _WarnOrderTypes = __webpack_require__(173);
 
-	var _RejectOrderTypes = __webpack_require__(176);
+	var _RejectOrderTypes = __webpack_require__(174);
 
-	var _actions = __webpack_require__(179);
+	var _actions = __webpack_require__(180);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -17883,13 +18445,13 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports) {
 
 	module.exports = window.superagent;
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17900,11 +18462,11 @@ webpackJsonp([0,1],[
 	exports.showAlert = showAlert;
 	exports.hideAlert = hideAlert;
 
-	var _ActionTypes = __webpack_require__(180);
+	var _ActionTypes = __webpack_require__(181);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
-	var _configureStore = __webpack_require__(181);
+	var _configureStore = __webpack_require__(182);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
@@ -17926,7 +18488,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17938,7 +18500,7 @@ webpackJsonp([0,1],[
 	var HIDE_ALERT = exports.HIDE_ALERT = 'HIDE_ALERT';
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17953,7 +18515,7 @@ webpackJsonp([0,1],[
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reducers = __webpack_require__(182);
+	var _reducers = __webpack_require__(183);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -17975,7 +18537,7 @@ webpackJsonp([0,1],[
 	exports.default = configureStore();
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17986,7 +18548,7 @@ webpackJsonp([0,1],[
 
 	var _redux = __webpack_require__(4);
 
-	var _alert = __webpack_require__(183);
+	var _alert = __webpack_require__(184);
 
 	var _alert2 = _interopRequireDefault(_alert);
 
@@ -17999,7 +18561,7 @@ webpackJsonp([0,1],[
 	exports.default = rootReducer;
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18009,7 +18571,7 @@ webpackJsonp([0,1],[
 	});
 	exports.default = orders;
 
-	var _ActionTypes = __webpack_require__(180);
+	var _ActionTypes = __webpack_require__(181);
 
 	var initialState = {
 	    text: '',
@@ -18037,7 +18599,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18054,11 +18616,11 @@ webpackJsonp([0,1],[
 
 	var _reactRedux = __webpack_require__(2);
 
-	var _configureStore = __webpack_require__(181);
+	var _configureStore = __webpack_require__(182);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
-	var _App = __webpack_require__(185);
+	var _App = __webpack_require__(186);
 
 	var _App2 = _interopRequireDefault(_App);
 
@@ -18102,7 +18664,7 @@ webpackJsonp([0,1],[
 	exports.default = Common;
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18119,15 +18681,15 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _Header = __webpack_require__(186);
+	var _Header = __webpack_require__(187);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _MainSection = __webpack_require__(190);
+	var _MainSection = __webpack_require__(191);
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _actions = __webpack_require__(179);
+	var _actions = __webpack_require__(180);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -18193,7 +18755,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18208,15 +18770,15 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _logo = __webpack_require__(187);
+	var _logo = __webpack_require__(188);
 
 	var _logo2 = _interopRequireDefault(_logo);
 
-	var _menu = __webpack_require__(188);
+	var _menu = __webpack_require__(189);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _avatar = __webpack_require__(189);
+	var _avatar = __webpack_require__(190);
 
 	var _avatar2 = _interopRequireDefault(_avatar);
 
@@ -18285,25 +18847,25 @@ webpackJsonp([0,1],[
 	exports.default = Header;
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAYCAYAAADpnJ2CAAAAAXNSR0IArs4c6QAAAGFJREFUSA1j/P//Pz8DA4M8ELMCMS3Bb6DhDxmBFuoBGbS2DOaR30wwFr1okIUPgRjkXVoDcJDS2pJR80dDgPIQAGX80ZKG8nBEMmG0pEEKjFHmaAhAQmC0pKF6SqB7SQMAk2Mm4KV3szUAAAAASUVORK5CYII="
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18316,7 +18878,7 @@ webpackJsonp([0,1],[
 
 	var _react = __webpack_require__(10);
 
-	var _SideBar = __webpack_require__(191);
+	var _SideBar = __webpack_require__(192);
 
 	var _SideBar2 = _interopRequireDefault(_SideBar);
 
@@ -18366,7 +18928,7 @@ webpackJsonp([0,1],[
 	exports.default = MainSection;
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

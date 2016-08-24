@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
-import OrderList from './OrderList';
+import classnames from 'classnames';
 import { SHOW_DANGER, SHOW_WARN, SHOW_REJECT, SHOW_TIMEOUT } from '../constants/PrimaryOrderTypes.js';
 import { SHOW_DANGER_ALL, SHOW_DANGER_NO_REACH, SHOW_DANGER_NO_RECEIVE, SHOW_DANGER_NO_SEND } from '../constants/DangerOrderTypes.js';
 import { SHOW_WARN_ALL, SHOW_WARN_NO_ACCEPT, SHOW_WARN_NO_RECEIVE, SHOW_WARN_NO_SEND, SHOW_WARN_NO_REACH } from '../constants/WarnOrderTypes.js';
 import { SHOW_REJECT_ALL, SHOW_REJECT_MANUAL, SHOW_REJECT_AUTO } from '../constants/RejectOrderTypes.js';
 
-class TabContent extends Component {
+class SubNav extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = { activeKey: 0 };
@@ -22,7 +22,7 @@ class TabContent extends Component {
     }
 
     render() {
-        const { orders, actions, primaryOrderType, hideCheckbox } = this.props;
+        const { orders, actions, primaryOrderType } = this.props;
         let entries;
         switch (primaryOrderType) {
             case SHOW_DANGER:
@@ -75,7 +75,7 @@ class TabContent extends Component {
                 break;
         }
         return (
-            <div className="tab-content">
+            <div className={classnames('sub-nav',{hide: entries.length == 0 ? true : false})}>
                 <Nav bsStyle="pills"
                      activeKey={this.state.activeKey}
                      onSelect={this._onSelect.bind(this)}>
@@ -86,12 +86,9 @@ class TabContent extends Component {
                         </NavItem>
                     )}
                 </Nav>
-                <OrderList hideCheckbox={hideCheckbox}
-                           orders={orders}
-                           actions={actions} />
             </div>
         );
     }
 }
 
-export default TabContent;
+export default SubNav;

@@ -1,6 +1,4 @@
 import { Component } from 'react';
-import { Checkbox } from 'react-bootstrap';
-import classnames from 'classnames';
 import OrderListItem from './OrderListItem';
 
 class OrderList extends Component {
@@ -11,41 +9,11 @@ class OrderList extends Component {
         };
     }
 
-    _onClick(index) {
-        if(index == this.state.activeIndex){
-            this.setState({
-                activeIndex: -1
-            });
-        } else {
-            this.setState({
-                activeIndex: index,
-            });
-        }
-    }
-
     render() {
         const { orders, actions, hideCheckbox } = this.props,
-            { activeIndex } = this.state,
-            entries = [{
-                text: '未催单'
-            }, {
-                text: '已催单'
-            }];
+            { activeIndex } = this.state;
         return (
             <div className="order-list">
-            	<div>
-                    共23笔订单
-                    {entries.map((entry, index) => {
-                        return (
-                            <Checkbox className={classnames({hide: hideCheckbox})}
-                                      checked={this.state.activeIndex == index ? true: false}
-                                      onClick={this._onClick.bind(this, index)}
-                                      inline>
-                                      {entry.text}
-                            </Checkbox>
-                        );
-                    })}
-                </div>
 		        <ul className="todo-list">
 		            {orders.filter(order => {
                         switch (activeIndex) {
