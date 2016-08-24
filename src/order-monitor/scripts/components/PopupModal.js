@@ -9,7 +9,7 @@ class PopupModal extends Component {
     render() {
         const { order }=this.props;
         return (
-            <Modal className="popup-modal"
+            <Modal dialogClassName="popup-modal"
             	   show={this.props.showModal}
                    onHide={this.props.closeModal}>
                 <div className="header">

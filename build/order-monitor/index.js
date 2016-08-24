@@ -17973,7 +17973,7 @@ webpackJsonp([0,1],[
 
 	            return React.createElement(
 	                _reactBootstrap.Modal,
-	                { className: 'popup-modal',
+	                { dialogClassName: 'popup-modal',
 	                    show: this.props.showModal,
 	                    onHide: this.props.closeModal },
 	                React.createElement(

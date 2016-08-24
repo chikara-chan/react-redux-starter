@@ -340,33 +340,33 @@
                   box-shadow: none; }
                 .app .main-section .order-list .todo-list .order-list-item .footer .btn.btn-primary:disabled {
                   color: rgba(255, 255, 255, 0.35); }
-          .popup-modal.modal.in .modal-dialog {
+          .popup-modal {
             width: auto;
             max-width: 710px;
             margin: 100px auto; }
-            .popup-modal.modal.in .modal-dialog .modal-content {
+            .popup-modal .modal-content {
               box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
               border-radius: 5px;
               overflow: hidden; }
-              .popup-modal.modal.in .modal-dialog .modal-content .header {
+              .popup-modal .modal-content .header {
                 padding: 0 20px;
                 background: #f7f9fb;
                 border-bottom: 1px solid #e8ecf0;
                 min-height: 43px;
                 line-height: 42px;
                 overflow: hidden; }
-                .popup-modal.modal.in .modal-dialog .modal-content .header .text {
+                .popup-modal .modal-content .header .text {
                   color: #fa4100; }
-                .popup-modal.modal.in .modal-dialog .modal-content .header .tag {
+                .popup-modal .modal-content .header .tag {
                   float: right; }
-                .popup-modal.modal.in .modal-dialog .modal-content .header .serial {
+                .popup-modal .modal-content .header .serial {
                   float: right;
                   margin-right: 10px;
                   font-size: 16px; }
-              .popup-modal.modal.in .modal-dialog .modal-content .progress-section {
+              .popup-modal .modal-content .progress-section {
                 padding: 10px 21px;
                 height: 75px; }
-                .popup-modal.modal.in .modal-dialog .modal-content .progress-section .part {
+                .popup-modal .modal-content .progress-section .part {
                   position: relative;
                   float: left;
                   width: 25%;
@@ -374,7 +374,7 @@
                   min-width: 100px;
                   padding: 10px 4px 29px 4px;
                   text-align: center; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .progress-section .part::before {
+                  .popup-modal .modal-content .progress-section .part::before {
                     content: '';
                     position: absolute;
                     bottom: 15px;
@@ -382,7 +382,7 @@
                     width: calc(100% - 8px);
                     height: 4px;
                     background: #52a0da; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .progress-section .part::after {
+                  .popup-modal .modal-content .progress-section .part::after {
                     content: '';
                     position: absolute;
                     left: calc(50% - 7px);
@@ -393,83 +393,83 @@
                     margin: 0 auto;
                     border-radius: 50%;
                     background: #52a0da; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .progress-section .part p {
+                  .popup-modal .modal-content .progress-section .part p {
                     margin-bottom: 0;
                     color: #288de1;
                     line-height: 15px; }
-              .popup-modal.modal.in .modal-dialog .modal-content .main {
+              .popup-modal .modal-content .main {
                 clear: both;
                 margin: 0 15px;
                 padding: 20px 5px 0 5px;
                 border-top: 1px dashed #ccc;
                 border-bottom: 1px dashed #ccc; }
-                .popup-modal.modal.in .modal-dialog .modal-content .main .board {
+                .popup-modal .modal-content .main .board {
                   padding: 20px 10px;
                   overflow: hidden; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .main .board .left {
+                  .popup-modal .modal-content .main .board .left {
                     float: left;
                     width: 54.5%; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p {
+                    .popup-modal .modal-content .main .board .left p {
                       float: left;
                       font-size: 12px;
                       line-height: 15px;
                       margin: 0;
                       word-wrap: break-word; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p.title {
+                      .popup-modal .modal-content .main .board .left p.title {
                         clear: both;
                         width: 75px; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p.content {
+                      .popup-modal .modal-content .main .board .left p.content {
                         width: calc(100% - 75px); }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p:nth-of-type(n+3) {
+                      .popup-modal .modal-content .main .board .left p:nth-of-type(n+3) {
                         margin-top: 10px; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p.strong {
+                      .popup-modal .modal-content .main .board .left p.strong {
                         font-size: 14px;
                         line-height: 14px;
                         font-weight: bold;
                         color: #000; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .left p.number {
+                      .popup-modal .modal-content .main .board .left p.number {
                         color: #288de1;
                         text-decoration: underline; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .main .board .right {
+                  .popup-modal .modal-content .main .board .right {
                     float: left;
                     width: 45.5%; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .main .board .right p {
+                    .popup-modal .modal-content .main .board .right p {
                       float: left;
                       font-size: 12px;
                       line-height: 15px;
                       margin: 0;
                       word-wrap: break-word; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .right p.title {
+                      .popup-modal .modal-content .main .board .right p.title {
                         clear: both;
                         width: 75px; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .right p.content {
+                      .popup-modal .modal-content .main .board .right p.content {
                         width: calc(100% - 75px); }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .right p:nth-of-type(n+3) {
+                      .popup-modal .modal-content .main .board .right p:nth-of-type(n+3) {
                         margin-top: 10px; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .main .board .right p.strong {
+                      .popup-modal .modal-content .main .board .right p.strong {
                         font-weight: bold;
                         color: #000; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .main .board.has-bg {
+                  .popup-modal .modal-content .main .board.has-bg {
                     background: rgba(247, 186, 0, 0.08);
                     border: 1px solid #f7ba00;
                     border-radius: 3px; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .main .board.has-bg p:nth-of-type(n+3) {
+                    .popup-modal .modal-content .main .board.has-bg p:nth-of-type(n+3) {
                       margin-top: 20px; }
-              .popup-modal.modal.in .modal-dialog .modal-content .record {
+              .popup-modal .modal-content .record {
                 padding: 20px 30px; }
-                .popup-modal.modal.in .modal-dialog .modal-content .record .left {
+                .popup-modal .modal-content .record .left {
                   float: left;
                   width: 80px;
                   margin-top: 7px;
                   line-height: 12px; }
-                .popup-modal.modal.in .modal-dialog .modal-content .record .right {
+                .popup-modal .modal-content .record .right {
                   margin-left: 80px;
                   padding: 11px 11px 11px 28px;
                   background: #f7f9fb;
                   border-radius: 2px; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .record .right .part {
+                  .popup-modal .modal-content .record .right .part {
                     position: relative; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part:nth-last-of-type(n+2)::after {
+                    .popup-modal .modal-content .record .right .part:nth-last-of-type(n+2)::after {
                       content: '';
                       position: absolute;
                       top: 11px;
@@ -479,7 +479,7 @@
                       height: calc(100% + 18px);
                       background: rgba(247, 186, 0, 0.4);
                       z-index: 1; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part:first-child::before {
+                    .popup-modal .modal-content .record .right .part:first-child::before {
                       content: '';
                       position: absolute;
                       left: -19px;
@@ -489,9 +489,9 @@
                       background: #f7ba00;
                       border-radius: 50%;
                       z-index: 2; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part + .part {
+                    .popup-modal .modal-content .record .right .part + .part {
                       margin-top: 18px; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .record .right .part + .part::before {
+                      .popup-modal .modal-content .record .right .part + .part::before {
                         content: '';
                         position: absolute;
                         top: 1px;
@@ -502,37 +502,37 @@
                         background: #f7df96;
                         border-radius: 50%;
                         z-index: 2; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part .operator {
+                    .popup-modal .modal-content .record .right .part .operator {
                       margin-bottom: 0;
                       font-size: 11px;
                       line-height: 13px;
                       color: #000; }
-                      .popup-modal.modal.in .modal-dialog .modal-content .record .right .part .operator span {
+                      .popup-modal .modal-content .record .right .part .operator span {
                         color: #666; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part .status {
+                    .popup-modal .modal-content .record .right .part .status {
                       margin-bottom: 0;
                       margin-top: 6px;
                       line-height: 12px;
                       color: #000; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .record .right .part .remark {
+                    .popup-modal .modal-content .record .right .part .remark {
                       margin-bottom: 0;
                       margin-top: 5px;
                       font-size: 11px;
                       line-height: 11px;
                       color: #666; }
-              .popup-modal.modal.in .modal-dialog .modal-content .form {
+              .popup-modal .modal-content .form {
                 padding: 0 30px 20px 30px; }
-                .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group {
+                .popup-modal .modal-content .form .form-horizontal .form-group {
                   margin: 0; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group + .form-group {
+                  .popup-modal .modal-content .form .form-horizontal .form-group + .form-group {
                     margin-top: 10px; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group label {
+                  .popup-modal .modal-content .form .form-horizontal .form-group label {
                     float: left;
                     width: 80px;
                     font-weight: normal; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group label strong {
+                    .popup-modal .modal-content .form .form-horizontal .form-group label strong {
                       color: #fa4100; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group .form-control {
+                  .popup-modal .modal-content .form .form-horizontal .form-group .form-control {
                     width: calc(100% - 80px);
                     margin-left: 80px;
                     border: 1px solid #e6e6e6;
@@ -542,10 +542,10 @@
                     color: #000000;
                     letter-spacing: 0.75px;
                     box-shadow: none; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group textarea {
+                  .popup-modal .modal-content .form .form-horizontal .form-group textarea {
                     min-height: 58px;
                     resize: none; }
-                  .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group button {
+                  .popup-modal .modal-content .form .form-horizontal .form-group button {
                     width: 80px;
                     height: 30px;
                     margin: 10px 0 0 80px;
@@ -556,10 +556,10 @@
                     color: #fff;
                     letter-spacing: 0.75px;
                     outline: none; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group button:hover {
+                    .popup-modal .modal-content .form .form-horizontal .form-group button:hover {
                       background: #2991e6; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group button:active {
+                    .popup-modal .modal-content .form .form-horizontal .form-group button:active {
                       background: #2581cc;
                       box-shadow: none; }
-                    .popup-modal.modal.in .modal-dialog .modal-content .form .form-horizontal .form-group button:disabled {
+                    .popup-modal .modal-content .form .form-horizontal .form-group button:disabled {
                       color: rgba(255, 255, 255, 0.35); }
