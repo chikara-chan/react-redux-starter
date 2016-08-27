@@ -1,12 +1,14 @@
 import { Component } from 'react';
 import { Checkbox, Button } from 'react-bootstrap';
 import PopupModal from './PopupModal';
+import ConfirmModal from './ConfirmModal';
 
 class OrderListItem extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            showModal: false
+            showModal: false,
+            showConfirmModal: false
         };
     }
 
@@ -19,6 +21,18 @@ class OrderListItem extends Component {
     _openModal() {
         this.setState({ 
             showModal: true 
+        });
+    }
+
+    _closeConfirmModal() {
+        this.setState({ 
+            showConfirmModal: false 
+        });
+    }
+
+    _openConfirmModal() {
+        this.setState({ 
+            showConfirmModal: true 
         });
     }
 
@@ -66,14 +80,14 @@ class OrderListItem extends Component {
                     <Button>
                         创建工单
                     </Button>
-                    <Button>
+                    <Button onClick={this._openConfirmModal.bind(this)}>
                         取消订单
                     </Button>
                 </div>
                 <PopupModal showModal={this.state.showModal}
-                       closeModal={this._closeModal.bind(this)}>
-                    
-                </PopupModal>
+                            closeModal={this._closeModal.bind(this)} />
+                <ConfirmModal showConfirmModal={this.state.showConfirmModal}
+                              closeConfirmModal={this._closeConfirmModal.bind(this)} />
             </li>
         );
     }

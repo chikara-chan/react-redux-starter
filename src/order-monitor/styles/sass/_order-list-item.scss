@@ -111,12 +111,16 @@
 		overflow: hidden;
 		clear: both;
 		.left {
-			 @media (min-width: 1319px){
+			@media (min-width: 1349px){
 				margin-right: 138px; 
-			 }
+			}
+			@media (max-width: 600px){
+				width: 100%;
+			}
 			float: left;
 			background:#f6f9fb;
 			border-radius:3px;
+			width: 50%;
 			max-width:448px;
 			padding: 20px;
 			p {
@@ -151,8 +155,12 @@
 		}
 		.right {
 			float: left;
+			width: 50%;
 			max-width: 396px;
-			padding: 20px;
+			padding: 18px 20px 20px 20px;
+			@media (max-width: 600px){
+				width: 100%;
+			}
 			p {
 				float: left;
 				font-size:12px;
@@ -226,4 +234,5 @@
 		}
 	}
 	@import 'popup-modal';
+	@import 'confirm-modal';
 }

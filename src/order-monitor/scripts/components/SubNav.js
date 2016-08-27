@@ -22,7 +22,7 @@ class SubNav extends Component {
     }
 
     render() {
-        const { orders, actions, primaryOrderType } = this.props;
+        const { actions, primaryOrderType } = this.props;
         let entries;
         switch (primaryOrderType) {
             case SHOW_DANGER:

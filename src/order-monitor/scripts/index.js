@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import store from './store/configureStore';
 import App from './containers/App';
 import Common from '../../common/scripts/common';
+import utils from '../../utils'
 
 const rootElement = document.getElementById('root');
 

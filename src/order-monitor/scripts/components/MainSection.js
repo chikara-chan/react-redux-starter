@@ -3,6 +3,7 @@ import { Nav, NavItem, Checkbox, Alert } from 'react-bootstrap';
 import classnames from 'classnames';
 import SubNav from './SubNav';
 import OrderList from './OrderList';
+import LaserBeam from './LaserBeam';
 import { SHOW_DANGER, SHOW_WARN, SHOW_REJECT, SHOW_TIMEOUT } from '../constants/PrimaryOrderTypes.js';
 
 class MainSection extends Component {
@@ -12,7 +13,8 @@ class MainSection extends Component {
             activeKey: 0,
             primaryOrderType: SHOW_DANGER,
             activeCheckboxIndex: -1,
-            offsetTop: 0
+            offsetTop: 0,
+            showLoading: false
         };
     }
 
@@ -36,16 +38,23 @@ class MainSection extends Component {
            })
        }
     }
-    
+ 
     _onSelect(eventKey) {
         this.setState({activeKey: eventKey});
     }
 
     _onClick(primaryOrderType) {
         const { actions } = this.props;
+        const { tabContent} = this.refs;
+
         actions.getOrder(primaryOrderType);
-        this.setState({primaryOrderType});
-        this.refs.tabContent.setState({activeKey: 0});
+        this.setState({
+            primaryOrderType,
+            showLoading: !this.state.showLoading
+        });
+        tabContent.setState({
+            activeKey: 0
+        });
     }
 
     _onClickCheckbox(index) {
@@ -63,7 +72,7 @@ class MainSection extends Component {
 
     render() {
         const { orders, actions } = this.props;
-        const { activeKey, primaryOrderType, activeCheckboxIndex, offsetTop } = this.state;
+        const { activeKey, primaryOrderType, activeCheckboxIndex, offsetTop, showLoading } = this.state;
         const navEntries = [{
             primaryOrderType: SHOW_DANGER,
             text: '高危订单(23)'
@@ -82,6 +91,7 @@ class MainSection extends Component {
         }, {
             text: '已催单'
         }];
+
         return (
             <section className="main-section">
                 <div className="tab-wrap" style={{top: offsetTop}}>
@@ -96,7 +106,6 @@ class MainSection extends Component {
                         )}
                     </Nav>
                     <SubNav ref="tabContent"
-                            orders={orders}
                             primaryOrderType={primaryOrderType}
                             actions={actions} />
                     <Alert bsStyle="warning">
@@ -123,6 +132,7 @@ class MainSection extends Component {
                 </div>
                 <OrderList orders={orders}
                            actions={actions} />
+                <LaserBeam show={showLoading}/>
             </section>
         );
     }

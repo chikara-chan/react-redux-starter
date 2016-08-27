@@ -16,9 +16,13 @@ webpackJsonp([0,1],[
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _common = __webpack_require__(185);
+	var _common = __webpack_require__(187);
 
 	var _common2 = _interopRequireDefault(_common);
+
+	var _utils = __webpack_require__(195);
+
+	var _utils2 = _interopRequireDefault(_utils);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -221,7 +225,7 @@ webpackJsonp([0,1],[
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _actions = __webpack_require__(178);
+	var _actions = __webpack_require__(180);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -17170,6 +17174,10 @@ webpackJsonp([0,1],[
 
 	var _OrderList2 = _interopRequireDefault(_OrderList);
 
+	var _LaserBeam = __webpack_require__(179);
+
+	var _LaserBeam2 = _interopRequireDefault(_LaserBeam);
+
 	var _PrimaryOrderTypes = __webpack_require__(171);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -17192,7 +17200,8 @@ webpackJsonp([0,1],[
 	            activeKey: 0,
 	            primaryOrderType: _PrimaryOrderTypes.SHOW_DANGER,
 	            activeCheckboxIndex: -1,
-	            offsetTop: 0
+	            offsetTop: 0,
+	            showLoading: false
 	        };
 	        return _this;
 	    }
@@ -17231,10 +17240,17 @@ webpackJsonp([0,1],[
 	        key: '_onClick',
 	        value: function _onClick(primaryOrderType) {
 	            var actions = this.props.actions;
+	            var tabContent = this.refs.tabContent;
+
 
 	            actions.getOrder(primaryOrderType);
-	            this.setState({ primaryOrderType: primaryOrderType });
-	            this.refs.tabContent.setState({ activeKey: 0 });
+	            this.setState({
+	                primaryOrderType: primaryOrderType,
+	                showLoading: !this.state.showLoading
+	            });
+	            tabContent.setState({
+	                activeKey: 0
+	            });
 	        }
 	    }, {
 	        key: '_onClickCheckbox',
@@ -17264,6 +17280,7 @@ webpackJsonp([0,1],[
 	            var primaryOrderType = _state.primaryOrderType;
 	            var activeCheckboxIndex = _state.activeCheckboxIndex;
 	            var offsetTop = _state.offsetTop;
+	            var showLoading = _state.showLoading;
 
 	            var navEntries = [{
 	                primaryOrderType: _PrimaryOrderTypes.SHOW_DANGER,
@@ -17283,6 +17300,7 @@ webpackJsonp([0,1],[
 	            }, {
 	                text: '已催单'
 	            }];
+
 	            return React.createElement(
 	                'section',
 	                { className: 'main-section' },
@@ -17304,7 +17322,6 @@ webpackJsonp([0,1],[
 	                        })
 	                    ),
 	                    React.createElement(_SubNav2.default, { ref: 'tabContent',
-	                        orders: orders,
 	                        primaryOrderType: primaryOrderType,
 	                        actions: actions }),
 	                    React.createElement(
@@ -17340,7 +17357,8 @@ webpackJsonp([0,1],[
 	                    )
 	                ),
 	                React.createElement(_OrderList2.default, { orders: orders,
-	                    actions: actions })
+	                    actions: actions }),
+	                React.createElement(_LaserBeam2.default, { show: showLoading })
 	            );
 	        }
 	    }]);
@@ -17470,7 +17488,6 @@ webpackJsonp([0,1],[
 	            var _this2 = this;
 
 	            var _props = this.props;
-	            var orders = _props.orders;
 	            var actions = _props.actions;
 	            var primaryOrderType = _props.primaryOrderType;
 
@@ -17704,6 +17721,10 @@ webpackJsonp([0,1],[
 
 	var _PopupModal2 = _interopRequireDefault(_PopupModal);
 
+	var _ConfirmModal = __webpack_require__(178);
+
+	var _ConfirmModal2 = _interopRequireDefault(_ConfirmModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17721,7 +17742,8 @@ webpackJsonp([0,1],[
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(OrderListItem).call(this, props, context));
 
 	        _this.state = {
-	            showModal: false
+	            showModal: false,
+	            showConfirmModal: false
 	        };
 	        return _this;
 	    }
@@ -17738,6 +17760,20 @@ webpackJsonp([0,1],[
 	        value: function _openModal() {
 	            this.setState({
 	                showModal: true
+	            });
+	        }
+	    }, {
+	        key: '_closeConfirmModal',
+	        value: function _closeConfirmModal() {
+	            this.setState({
+	                showConfirmModal: false
+	            });
+	        }
+	    }, {
+	        key: '_openConfirmModal',
+	        value: function _openConfirmModal() {
+	            this.setState({
+	                showConfirmModal: true
 	            });
 	        }
 	    }, {
@@ -17920,12 +17956,14 @@ webpackJsonp([0,1],[
 	                    ),
 	                    React.createElement(
 	                        _reactBootstrap.Button,
-	                        null,
+	                        { onClick: this._openConfirmModal.bind(this) },
 	                        '取消订单'
 	                    )
 	                ),
 	                React.createElement(_PopupModal2.default, { showModal: this.state.showModal,
-	                    closeModal: this._closeModal.bind(this) })
+	                    closeModal: this._closeModal.bind(this) }),
+	                React.createElement(_ConfirmModal2.default, { showConfirmModal: this.state.showConfirmModal,
+	                    closeConfirmModal: this._closeConfirmModal.bind(this) })
 	            );
 	        }
 	    }]);
@@ -18311,12 +18349,186 @@ webpackJsonp([0,1],[
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(10);
+
+	var _reactBootstrap = __webpack_require__(12);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ConfirmModal = function (_Component) {
+	    _inherits(ConfirmModal, _Component);
+
+	    function ConfirmModal(props, context) {
+	        _classCallCheck(this, ConfirmModal);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ConfirmModal).call(this, props, context));
+	    }
+
+	    _createClass(ConfirmModal, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props;
+	            var order = _props.order;
+	            var showConfirmModal = _props.showConfirmModal;
+	            var closeConfirmModal = _props.closeConfirmModal;
+
+
+	            return React.createElement(
+	                _reactBootstrap.Modal,
+	                { dialogClassName: 'confirm-modal',
+	                    show: showConfirmModal,
+	                    onHide: closeConfirmModal },
+	                React.createElement(
+	                    'a',
+	                    { href: 'javascript:void(0)', onClick: closeConfirmModal },
+	                    '×'
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    '确认取消订单吗'
+	                ),
+	                React.createElement(
+	                    _reactBootstrap.Button,
+	                    null,
+	                    '确 定（放心点击，功能未开放）'
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ConfirmModal;
+	}(_react.Component);
+
+	exports.default = ConfirmModal;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(10);
+
+	var _classnames = __webpack_require__(169);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LaserBeam = function (_Component) {
+	    _inherits(LaserBeam, _Component);
+
+	    function LaserBeam(props, context) {
+	        _classCallCheck(this, LaserBeam);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LaserBeam).call(this, props, context));
+
+	        _this.state = {
+	            style: {
+	                position: 'fixed',
+	                top: '0',
+	                left: '0',
+	                zIndex: '999',
+	                width: '0',
+	                height: '2px',
+	                background: '#52a0da',
+	                boxShadow: '0 1px 10px #52a0da',
+	                transitionProperty: 'width',
+	                transitionDuration: '0ms'
+	            }
+	        };
+	        return _this;
+	    }
+
+	    _createClass(LaserBeam, [{
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            var show = nextProps.show;
+	            var style = this.state.style;
+
+	            var self = this;
+	            var changedStyle = void 0;
+
+	            if (show) {
+	                changedStyle = Object.assign({}, style, {
+	                    width: '70%',
+	                    transitionDuration: '10000ms',
+	                    transitionTimingFunction: 'cubic-bezier(0, 1, 0, 1)'
+	                });
+	            } else {
+	                changedStyle = Object.assign({}, style, {
+	                    width: '100%',
+	                    transitionDuration: '300ms',
+	                    transitionTimingFunction: 'linear'
+	                });
+	                window.setTimeout(function () {
+	                    changedStyle = Object.assign({}, style, {
+	                        width: '0',
+	                        transitionDuration: '0ms'
+	                    });
+	                    self.setState({
+	                        style: changedStyle
+	                    });
+	                }, 300);
+	            }
+	            this.state = {
+	                style: changedStyle
+	            };
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var style = this.state.style;
+
+
+	            return React.createElement('div', { style: style });
+	        }
+	    }]);
+
+	    return LaserBeam;
+	}(_react.Component);
+
+	LaserBeam.propTypes = {
+	    show: _react.PropTypes.bool.isRequired
+	};
+
+	exports.default = LaserBeam;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 	exports.search = search;
 	exports.getOrder = getOrder;
 
-	var _superagent = __webpack_require__(179);
+	var _superagent = __webpack_require__(181);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -18332,7 +18544,7 @@ webpackJsonp([0,1],[
 
 	var _RejectOrderTypes = __webpack_require__(174);
 
-	var _actions = __webpack_require__(180);
+	var _actions = __webpack_require__(182);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -18445,13 +18657,13 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 179 */
+/* 181 */
 /***/ function(module, exports) {
 
 	module.exports = window.superagent;
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18462,11 +18674,11 @@ webpackJsonp([0,1],[
 	exports.showAlert = showAlert;
 	exports.hideAlert = hideAlert;
 
-	var _ActionTypes = __webpack_require__(181);
+	var _ActionTypes = __webpack_require__(183);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
-	var _configureStore = __webpack_require__(182);
+	var _configureStore = __webpack_require__(184);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
@@ -18488,7 +18700,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18500,7 +18712,7 @@ webpackJsonp([0,1],[
 	var HIDE_ALERT = exports.HIDE_ALERT = 'HIDE_ALERT';
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18515,7 +18727,7 @@ webpackJsonp([0,1],[
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reducers = __webpack_require__(183);
+	var _reducers = __webpack_require__(185);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -18537,7 +18749,7 @@ webpackJsonp([0,1],[
 	exports.default = configureStore();
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18548,7 +18760,7 @@ webpackJsonp([0,1],[
 
 	var _redux = __webpack_require__(4);
 
-	var _alert = __webpack_require__(184);
+	var _alert = __webpack_require__(186);
 
 	var _alert2 = _interopRequireDefault(_alert);
 
@@ -18561,7 +18773,7 @@ webpackJsonp([0,1],[
 	exports.default = rootReducer;
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18571,7 +18783,7 @@ webpackJsonp([0,1],[
 	});
 	exports.default = orders;
 
-	var _ActionTypes = __webpack_require__(181);
+	var _ActionTypes = __webpack_require__(183);
 
 	var initialState = {
 	    text: '',
@@ -18599,7 +18811,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18616,11 +18828,11 @@ webpackJsonp([0,1],[
 
 	var _reactRedux = __webpack_require__(2);
 
-	var _configureStore = __webpack_require__(182);
+	var _configureStore = __webpack_require__(184);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
-	var _App = __webpack_require__(186);
+	var _App = __webpack_require__(188);
 
 	var _App2 = _interopRequireDefault(_App);
 
@@ -18664,7 +18876,7 @@ webpackJsonp([0,1],[
 	exports.default = Common;
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18681,15 +18893,15 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _Header = __webpack_require__(187);
+	var _Header = __webpack_require__(189);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _MainSection = __webpack_require__(191);
+	var _MainSection = __webpack_require__(193);
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _actions = __webpack_require__(180);
+	var _actions = __webpack_require__(182);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -18755,7 +18967,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18770,15 +18982,15 @@ webpackJsonp([0,1],[
 
 	var _reactBootstrap = __webpack_require__(12);
 
-	var _logo = __webpack_require__(188);
+	var _logo = __webpack_require__(190);
 
 	var _logo2 = _interopRequireDefault(_logo);
 
-	var _menu = __webpack_require__(189);
+	var _menu = __webpack_require__(191);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _avatar = __webpack_require__(190);
+	var _avatar = __webpack_require__(192);
 
 	var _avatar2 = _interopRequireDefault(_avatar);
 
@@ -18847,25 +19059,25 @@ webpackJsonp([0,1],[
 	exports.default = Header;
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAYCAYAAADpnJ2CAAAAAXNSR0IArs4c6QAAAGFJREFUSA1j/P//Pz8DA4M8ELMCMS3Bb6DhDxmBFuoBGbS2DOaR30wwFr1okIUPgRjkXVoDcJDS2pJR80dDgPIQAGX80ZKG8nBEMmG0pEEKjFHmaAhAQmC0pKF6SqB7SQMAk2Mm4KV3szUAAAAASUVORK5CYII="
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 191 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18878,7 +19090,7 @@ webpackJsonp([0,1],[
 
 	var _react = __webpack_require__(10);
 
-	var _SideBar = __webpack_require__(192);
+	var _SideBar = __webpack_require__(194);
 
 	var _SideBar2 = _interopRequireDefault(_SideBar);
 
@@ -18928,7 +19140,7 @@ webpackJsonp([0,1],[
 	exports.default = MainSection;
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19005,6 +19217,117 @@ webpackJsonp([0,1],[
 	}(_react.Component);
 
 	exports.default = SideBar;
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var Utils = function Utils() {
+		if (!(this instanceof Utils)) {
+			return new Utils();
+		}
+	};
+
+	Utils.prototype.ajax = function (options) {
+		var defaultOptions = {
+			'type': 'post',
+			'url': null,
+			'data': {},
+			'success': null,
+			'Content-Type': 'application/json'
+		};
+		var promise = void 0;
+
+		options = Object.assign({}, defaultOptions, options);
+		promise = request[options['type']](options['url']);
+		Object.keys(options).forEach(function (key) {
+			if (!key.match(/type|url|data|success/)) {
+				promise.set(key, options[key]);
+			}
+		});
+		promise.send(options['data']).end(function (err, res) {
+			if (err) {
+				CRM.dialog({
+					title: '温馨提示：',
+					quickClose: true,
+					id: "crm_dialog",
+					width: 330,
+					zIndex: 1112,
+					fixed: true,
+					content: '请求服务器异常'
+				}).showModal();
+			} else if (!res.body.status) {
+				CRM.dialog({
+					title: '温馨提示：',
+					quickClose: true,
+					id: "crm_dialog",
+					width: 330,
+					zIndex: 1112,
+					fixed: true,
+					content: res.body.message
+				}).showModal();
+			} else {
+				var callback = options['success'];
+				callback && callback(res.body.entry);
+			}
+		});
+	};
+
+	Utils.prototype.getOuterUrl = function (url) {
+		// 本地环境
+		if (~location.host.indexOf('dev.')) {
+			return 'http://daily.manage.51xianqu.com' + url;
+		}
+		// 线上环境
+		else {
+				return 'http://' + document.domain + url;
+			}
+	};
+
+	Utils.prototype.formatDate = function (timestamp, format) {
+		var date = new Date(timestamp);
+		var years = date.getFullYear().toString();
+		var month = date.getMonth().toString();
+		var day = date.getDate().toString();
+		var hours = date.getMonth().toString();
+		var minutes = date.getMinutes().toString();
+		var seconds = date.getSeconds().toString();
+
+		return format.replace(/y+|M+|d+|h+|m+|s+/g, function (match) {
+			var length = match.length;
+			switch (match.charAt(0)) {
+				case 'y':
+					return years.substr(-length);
+				case 'M':
+					return (month.length == 1 ? '0' + month : month).substr(-length);
+				case 'd':
+					return (day.length == 1 ? '0' + day : day).substr(-length);
+				case 'h':
+					return (hours.length == 1 ? '0' + hours : hours).substr(-length);
+				case 'm':
+					return (minutes.length == 1 ? '0' + minutes : minutes).substr(-length);
+				case 's':
+					return (seconds.length == 1 ? '0' + seconds : seconds).substr(-length);
+			}
+		});
+	};
+
+	Utils.prototype.poem = function () {
+		var snippets = ['天地寂然不动，', '而气机无息稍停。', '日月尽夜奔驰，', '而贞明万古不易。'];
+
+		console.log('%c' + snippets.join('\n'), 'background: linear-gradient(to right, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);font-size:3em');
+	};
+
+	var utils = new Utils();
+
+	utils.poem();
+
+	exports.default = utils;
 
 /***/ }
 ]);

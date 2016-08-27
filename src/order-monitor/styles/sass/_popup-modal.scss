@@ -1,10 +1,11 @@
 @at-root .popup-modal{
 	width: auto;
 	max-width: 710px;
-	margin: 100px auto;
+	margin: 36px auto;
 	.modal-content {
 		box-shadow:0px 3px 10px 0px rgba(0,0,0,0.30);
 		border-radius:5px;
+		border: none;
 		overflow: hidden;
 		.header {
 			padding: 0 20px;
