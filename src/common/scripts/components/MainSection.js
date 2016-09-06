@@ -13,8 +13,7 @@ class MainSection extends Component {
                 <div className="left">
                     <SideBar />
                 </div>
-                <div className="right"
-                     id="container">
+                <div className="right">
                     {children}
                 </div>
             </main>

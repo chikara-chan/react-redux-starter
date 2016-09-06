@@ -1,17 +1,11 @@
+import 'babel-polyfill';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import store from './store/configureStore';
-import App from './containers/App';
-import Common from '../../common/scripts/common';
-import utils from '../../utils'
+import Root from './containers/Root';
+import configureStore from './store/configureStore';
 
-const rootElement = document.getElementById('root');
+const store = configureStore();
 
 render(
-	<Common>
-  		<Provider store={store}>
-  		  	<App/>
-  		</Provider>
-  	</Common>,
-  	rootElement
+	<Root store={store} />,
+  	document.getElementById('root')
 );

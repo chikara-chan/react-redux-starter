@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import FormSection from '../components/FormSection';
 import MainSection from '../components/MainSection';
 import * as actions from '../actions';
+import '../../styles/sass';
 
 class App extends Component {
     render() {

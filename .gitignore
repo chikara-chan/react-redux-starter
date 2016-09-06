@@ -1,4 +1,4 @@
-#node_modules
+node_modules
 bower_components
 tmp
 *~
@@ -13,7 +13,6 @@ tmp
 */.DS_Store
 */.idea
 .module-cache
-#*/node_modules
 tmp/*
 .sass-cache/*
 npm-debug.log

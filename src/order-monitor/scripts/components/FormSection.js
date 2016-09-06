@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import DateTimeField from 'react-bootstrap-datetimepicker';
-
 
 class FormSection extends Component {
     constructor(props, context) {

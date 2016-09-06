@@ -4,7 +4,6 @@ import { SHOW_DANGER, SHOW_WARN, SHOW_REJECT, SHOW_TIMEOUT } from '../constants/
 import { SHOW_DANGER_ALL, SHOW_DANGER_NO_REACH, SHOW_DANGER_NO_RECEIVE, SHOW_DANGER_NO_SEND } from '../constants/DangerOrderTypes.js';
 import { SHOW_WARN_ALL, SHOW_WARN_NO_ACCEPT, SHOW_WARN_NO_RECEIVE, SHOW_WARN_NO_SEND, SHOW_WARN_NO_REACH } from '../constants/WarnOrderTypes.js';
 import { SHOW_REJECT_ALL, SHOW_REJECT_MANUAL, SHOW_REJECT_AUTO } from '../constants/RejectOrderTypes.js';
-import * as actions from '../../../common/scripts/actions';
 
 let savedData;
 
@@ -31,6 +30,16 @@ export function search(data) {
 	            // 	});
 	            // }
 	    	});
+    	dispatch({ 
+        	type: types.SEARCH, 
+        	orders: [{
+                id: 1,
+                text: 'SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED'
+            }, {
+                id: 2,
+                text: 'SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED'
+            }]
+    	});
   	};
 };
 
@@ -110,5 +119,15 @@ export function getOrder(primaryOrderType, secondaryOrderType) {
 	            // }
 	            // actions.showAlert('sb');
 	    	});
+    	dispatch({ 
+        	type: types.GET_ORDER, 
+        	orders: [{
+                id: 1,
+                text: '啊发发发'
+            }, {
+                id: 2,
+                text: '三大公司法国帅哥'
+            }]
+    	});
   	};
 };
