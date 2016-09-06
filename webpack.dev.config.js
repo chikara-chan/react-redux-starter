@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -24,7 +23,6 @@ module.exports = {
         loaders: ['style', 'css', 'postcss', 'sass']
       }]
     },
-    postcss: [autoprefixer({browsers: ['last 2 versions']})],
     externals: {
         'react': 'window.React',
         'react-dom': 'window.ReactDOM',
