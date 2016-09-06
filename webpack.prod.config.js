@@ -4,8 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        'order-monitor/index': './src/order-monitor/scripts/index.js',
-        'test/index': './src/test/scripts/index.js'
+        'order-monitor/index': './src/order-monitor/scripts/index.js'
     },
     output: {
         path: __dirname + '/build/',
@@ -44,7 +43,8 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
 		    compress: {
 		        warnings: false
-		    }
+		    },
+            comments: false
 		}),
         new webpack.optimize.CommonsChunkPlugin({
           name: 'common/index',

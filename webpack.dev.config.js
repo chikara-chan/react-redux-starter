@@ -1,10 +1,10 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',
     entry: {
-        'order-monitor/index': ['./src/order-monitor/scripts/index.js', 'webpack-hot-middleware/client'],
-        'test/index': ['./src/test/scripts/index.js', 'webpack-hot-middleware/client']
+        'order-monitor/index': ['./src/order-monitor/scripts/index.js', 'webpack-hot-middleware/client']
     },
     output: {
         path: __dirname + '/build/',
@@ -21,7 +21,7 @@ module.exports = {
             loader: "url?limit=10000"
         }, {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
       }]
     },
     externals: {
@@ -38,6 +38,10 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('common/index.js')
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'common/index',
+          filename: '[name].js'
+        }),
+        new ExtractTextPlugin('[name].css')
     ],
 };
