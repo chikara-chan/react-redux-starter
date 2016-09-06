@@ -3,7 +3,8 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval-source-map',
     entry: {
-        'order-monitor/index': ['./src/order-monitor/scripts/index.js', 'webpack-hot-middleware/client']
+        'order-monitor/index': ['./src/order-monitor/scripts/index.js', 'webpack-hot-middleware/client'],
+        'test/index': ['./src/test/scripts/index.js', 'webpack-hot-middleware/client']
     },
     output: {
         path: __dirname + '/build/',
@@ -20,7 +21,7 @@ module.exports = {
             loader: "url?limit=10000"
         }, {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loaders: ['style', 'css', 'sass']
       }]
     },
     externals: {

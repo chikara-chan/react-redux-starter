@@ -1,9 +1,11 @@
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        'order-monitor/index': './src/order-monitor/scripts/index.js'
+        'order-monitor/index': './src/order-monitor/scripts/index.js',
+        'test/index': './src/test/scripts/index.js'
     },
     output: {
         path: __dirname + '/build/',
@@ -20,7 +22,7 @@ module.exports = {
             loader: "url?limit=10000"
         }, {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }]
     },
     postcss: [autoprefixer({browsers: ['last 2 versions']})],
@@ -44,6 +46,10 @@ module.exports = {
 		        warnings: false
 		    }
 		}),
-        new webpack.optimize.CommonsChunkPlugin('common/index.js')
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'common/index',
+          filename: '[name].js'
+        }),
+        new ExtractTextPlugin('[name].css')
     ],
 };
