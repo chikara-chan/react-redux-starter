@@ -50,6 +50,9 @@ module.exports = {
           name: 'common/index',
           filename: '[name].js'
         }),
-        new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('[name].css'),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        })
     ],
 };
