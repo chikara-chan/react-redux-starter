@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -20,8 +19,8 @@ module.exports = {
             test: /\.(jpg|png|gif|webp)$/,
             loader: "url?limit=10000"
         }, {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!sass')
+            test: /\.scss$/,
+            loader: 'style!css!sass'
       }]
     },
     externals: {
@@ -42,7 +41,6 @@ module.exports = {
           name: 'common/index',
           filename: '[name].js'
         }),
-        new ExtractTextPlugin('[name].css'),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         })

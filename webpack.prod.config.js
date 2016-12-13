@@ -20,8 +20,8 @@ module.exports = {
             test: /\.(jpg|png|gif|webp)$/,
             loader: "url?limit=10000"
         }, {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }]
     },
     postcss: [autoprefixer({browsers: ['last 2 versions']})],

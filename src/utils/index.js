@@ -1,3 +1,5 @@
+import request from 'superagent';
+
 const Utils = function() {
 	if (!(this instanceof Utils)) {
 		return new Utils();
@@ -88,19 +90,19 @@ Utils.prototype.formatDate = function(timestamp, format) {
 	});
 };
 
-Utils.prototype.poem = function() {
-	const snippets = [
-		'天地寂然不动，',
-		'而气机无息稍停。',
-		'日月尽夜奔驰，',
-		'而贞明万古不易。'
-	];
+Utils.prototype.getUrlSearchObject = function() {
+	const search = location.search.slice(1);
+	const rParam = /([^&]*)=([^&]*)/g;
+	let ret = {};
+	let param;
 
-	console.log('%c' + snippets.join('\n'), 'background: linear-gradient(to right, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);font-size:3em')
+	while (param = rParam.exec(search)) {
+		ret[param[1]] = param[2];
+	}
+
+	return ret;
 };
 
 const utils = new Utils();
-
-utils.poem();
 
 export default utils;
