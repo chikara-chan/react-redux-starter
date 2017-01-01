@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { NavDropdown, MenuItem, Nav } from 'react-bootstrap';
 import imgLogo from '../../styles/img/logo.png';
 import imgMenu from '../../styles/img/menu.png';

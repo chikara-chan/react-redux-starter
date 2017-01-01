@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import CommonRoot from '../../../common/scripts/containers/Root';
 import App from './App';

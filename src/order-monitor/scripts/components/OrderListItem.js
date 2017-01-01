@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Checkbox, Button } from 'react-bootstrap';
 import PopupModal from './PopupModal';
 import ConfirmModal from './ConfirmModal';

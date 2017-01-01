@@ -36,7 +36,9 @@ module.exports = {
         extensions: ['', '.js', '.json', '.css', '.scss', '.html']
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
           name: 'common/index',
           filename: '[name].js'

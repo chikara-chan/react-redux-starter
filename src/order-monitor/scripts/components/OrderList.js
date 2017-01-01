@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import OrderListItem from './OrderListItem';
 
 class OrderList extends Component {

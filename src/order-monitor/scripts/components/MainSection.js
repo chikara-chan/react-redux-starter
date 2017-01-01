@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Nav, NavItem, Checkbox, Alert } from 'react-bootstrap';
 import classnames from 'classnames';
 import SubNav from './SubNav';

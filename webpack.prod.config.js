@@ -24,7 +24,7 @@ module.exports = {
             loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }]
     },
-    postcss: [autoprefixer({browsers: ['last 2 versions']})],
+    postcss: [autoprefixer({browsers: ['> 5%']})],
     externals: {
         'react': 'window.React',
         'react-dom': 'window.ReactDOM',
