@@ -1,11 +1,8 @@
 {
   "author": "Chikara Chan",
-  "name": "order-monitor",
+  "name": "react-redux-starter",
   "version": "1.0.1",
-  "keywords": [
-    "refund"
-  ],
-  "description": "高危订单监控中心",
+  "description": "React Redux Starter",
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development node server.js",
