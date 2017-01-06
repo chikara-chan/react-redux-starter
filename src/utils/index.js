@@ -104,5 +104,4 @@ Utils.prototype.getUrlSearchObject = function() {
 };
 
 const utils = new Utils();
-
 export default utils;
