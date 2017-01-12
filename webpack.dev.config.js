@@ -1,50 +1,56 @@
-var webpack = require('webpack');
+const path = require('path'),
+    webpack = require('webpack')
 
 module.exports = {
     devtool: 'eval-source-map',
     entry: {
-        'order-monitor/index': ['./src/order-monitor/scripts/index.js', 'webpack-hot-middleware/client']
+        bundle: [
+            './src',
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+        ],
+        vendor: [
+            'react',
+            'react-dom',
+            'redux',
+            'react-redux',
+            'superagent'
+        ]
     },
     output: {
-        path: __dirname + '/build/',
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        publicPath: '/build/'
+        publicPath: '/dist'
     },
     module: {
         loaders: [{
             test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            loaders: ['babel']
-        }, {
-            test: /\.(jpg|png|gif|webp)$/,
-            loader: "url?limit=10000"
+            exclude: /node_modules/,
+            loader: 'babel'
         }, {
             test: /\.scss$/,
-            loader: 'style!css!sass'
-      }]
+            loaders: [
+                'style',
+                'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
+                'sass'
+            ]
+        }, {
+            test: /\.(jpg|png|gif|webp)$/,
+            loader: 'url?limit=8000'
+        }, {
+            test: /\.json$/,
+            loader: 'json'
+        }]
     },
-    externals: {
-        'react': 'window.React',
-        'react-dom': 'window.ReactDOM',
-        'redux': 'window.Redux',
-        'react-redux': 'window.ReactRedux',
-        'react-bootstrap': 'window.ReactBootstrap',
-        'react-bootstrap-datetimepicker': 'window.ReactBootstrapDatetimePicker',
-        'superagent': 'window.superagent',
-    },
-    resolve: {
-        extensions: ['', '.js', '.json', '.css', '.scss', '.html']
-    },
+    resolve: {extensions: ['', '.js', '.json', '.scss']},
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest'],
+            filename: '[name].js'
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-          name: 'common/index',
-          filename: '[name].js'
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        })
-    ],
-};
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
+    ]
+}
