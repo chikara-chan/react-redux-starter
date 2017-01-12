@@ -1,23 +1,20 @@
-var express = require('express');
-var open = require("open");
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-var config = require('./webpack.dev.config');
+const Koa = require('koa'),
+    convert = require('koa-convert'),
+    serve = require('koa-static'),
+    webpack = require('webpack'),
+    path = require('path'),
+    devMiddleware = require('koa-webpack-dev-middleware'),
+    hotMiddleware = require('koa-webpack-hot-middleware'),
+    config = require('./webpack.dev.config'),
+    app = new Koa(),
+    compiler = webpack(config),
+    port = process.env.port || 3000
 
-var app = new express();
-var port = 3000;
-
-var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-app.use(webpackHotMiddleware(compiler));
-app.use('/www', express.static(__dirname + '/www'));
-
-app.listen(port, function(error) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
-    open('http://localhost:' + port +'/www/order-monitor.html');
-  }
-})
+app.use(convert(devMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+})))
+app.use(convert(hotMiddleware(compiler)))
+app.use(serve(path.join(__dirname, 'views')))
+app.listen(port)
+console.log(`\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`)
