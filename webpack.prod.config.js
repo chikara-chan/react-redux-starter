@@ -1,58 +1,54 @@
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path'),
+    webpack = require('webpack'),
+    autoprefixer = require('autoprefixer'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: {
-        'order-monitor/index': './src/order-monitor/scripts/index.js'
+        bundle: './src',
+        vendor: [
+            'react',
+            'react-dom',
+            'redux',
+            'react-redux',
+            'superagent'
+        ]
     },
     output: {
-        path: __dirname + '/build/',
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        publicPath: '/build/'
+        publicPath: '../dist'
     },
     module: {
         loaders: [{
             test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            loaders: ['babel']
-        }, {
-            test: /\.(jpg|png|gif|webp)$/,
-            loader: "url?limit=10000"
+            exclude: /node_modules/,
+            loader: 'babel'
         }, {
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
-      }]
+            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]!postcss!sass')
+        }, {
+            test: /\.(jpg|png|gif|webp)$/,
+            loader: 'url?limit=8000'
+        }, {
+            test: /\.json$/,
+            loader: 'json'
+        }]
     },
     postcss: [autoprefixer({browsers: ['> 5%']})],
-    externals: {
-        'react': 'window.React',
-        'react-dom': 'window.ReactDOM',
-        'redux': 'window.Redux',
-        'react-redux': 'window.ReactRedux',
-        'react-bootstrap': 'window.ReactBootstrap',
-        'react-bootstrap-datetimepicker': 'window.ReactBootstrapDatetimePicker',
-        'superagent': 'window.superagent',
-    },
-    resolve: {
-        extensions: ['', '.js', '.json', '.css', '.scss', '.html']
-    },
+    resolve: {extensions: ['', '.js', '.json', '.scss']},
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-		    compress: {
-		        warnings: false
-		    },
-            comments: false
-		}),
         new webpack.optimize.CommonsChunkPlugin({
-          name: 'common/index',
-          filename: '[name].js'
+            names: ['vendor', 'manifest'],
+            filename: '[name].js'
         }),
-        new ExtractTextPlugin('[name].css'),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        })
-    ],
-};
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {warnings: false},
+            comments: false
+        }),
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)}),
+        new ExtractTextPlugin('[name].css')
+    ]
+}
