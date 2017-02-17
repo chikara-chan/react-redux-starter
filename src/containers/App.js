@@ -8,29 +8,31 @@ import styles from '../sass/App'
 import '../sass/global'
 
 class App extends Component {
-    constructor() {
-        super()
-    }
+  constructor() {
+    super()
+  }
 
-    render() {
-        return (
-            <div className={styles.app}>
-                <Header/>
-                <Navbar/>
-            </div>
-        )
-    }
+  render() {
+    const {actions} = this.props
+
+    return (
+      <div className={styles.app}>
+        <Header actions={actions}/>
+        <Navbar actions={actions}/>
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-    return {userInfo: state.userInfo}
+  return state
 }
 
 function mapDispatchToProps(dispatch) {
-    return {actions: bindActionCreators(actions, dispatch)}
+  return {actions: bindActionCreators(actions, dispatch)}
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App)

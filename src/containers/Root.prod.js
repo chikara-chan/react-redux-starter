@@ -3,15 +3,15 @@ import {Provider} from 'react-redux'
 import App from './App'
 
 class Root extends Component {
-    render() {
-        const {store} = this.props
+  render() {
+    const {store} = this.props
 
-        return (
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        )
-    }
+    return (
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    )
+  }
 }
 
 export default Root

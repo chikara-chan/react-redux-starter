@@ -4,18 +4,18 @@ import DevTools from './DevTools'
 import App from './App'
 
 class Root extends Component {
-    render() {
-        const {store} = this.props
+  render() {
+    const {store} = this.props
 
-        return (
-            <Provider store={store}>
-                <div>
-                    <App/>
-                    <DevTools/>
-                </div>
-            </Provider>
-        )
-    }
+    return (
+      <Provider store={store}>
+        <div>
+          <App/>
+          <DevTools/>
+        </div>
+      </Provider>
+    )
+  }
 }
 
 export default Root

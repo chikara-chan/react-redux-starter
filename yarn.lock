@@ -1640,6 +1640,10 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-config-invincible:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-invincible/-/eslint-config-invincible-1.0.0.tgz#b4d8e86d12fc6ffcd1532c736db73a0ebfdda8ae"
+
 eslint-plugin-react@^6.8.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.9.0.tgz#54c2e9906b76f9d10142030bdc34e9d6840a0bb2"
