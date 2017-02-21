@@ -30,23 +30,6 @@ function ajax(options) {
   })
 }
 
-/**
- * @return {Object} Return url params
- */
-function getURLParams() {
-  const search = location.search.slice(1),
-    rParam = /([^&]*)=([^&]*)/g
-  let ret = {},
-    param
-
-  while (param = rParam.exec(search)) {
-    ret[param[1]] = param[2]
-  }
-
-  return ret
-}
-
 export default {
-  ajax,
-  getURLParams
+  ajax
 }
