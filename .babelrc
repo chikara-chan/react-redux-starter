@@ -1,9 +1,13 @@
 {
   "presets": ["es2015", "react", "stage-0"],
-  "plugins": ["transform-runtime", "add-module-exports", ["import", {
-    "libraryName": "invincible",
-    "camel2DashComponentName": false
-  }]],
+  "plugins": [
+    "transform-runtime",
+    "add-module-exports",
+    ["import", {
+      "libraryName": "invincible",
+      "camel2DashComponentName": false
+    }]
+  ],
   "env": {
     "development": {
       "presets": ["react-hmre"]
