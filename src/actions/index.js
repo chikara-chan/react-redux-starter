@@ -11,7 +11,7 @@ function replaceOrders(orders) {
 function fetchOrders() {
   return dispatch => {
     utils.ajax({
-      url: '/api/user/fetchOrders',
+      url: '/api',
       type: 'get'
     }).then(res => {
       dispatch(replaceOrders(res))

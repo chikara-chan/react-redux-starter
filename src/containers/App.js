@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import actions from 'actions'
-import styles from 'sass/App'
+import * as actions from 'actions'
 import 'sass/global'
+import styles from 'sass/App'
 import Header from 'components/Header'
 import Navbar from 'components/Navbar'
 import Main from 'components/Main'
@@ -15,7 +15,7 @@ class App extends PureComponent {
 
   render() {
     const {actions, orders} = this.props
-
+console.log(actions)
     return (
       <div className={styles.app}>
         <Header actions={actions}/>
