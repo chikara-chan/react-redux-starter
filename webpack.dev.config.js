@@ -26,9 +26,7 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel',
-      query: {
-          cacheDirectory: true
-      }
+      query: {cacheDirectory: true}
     }, {
       test: /\.css$/,
       loaders: [
