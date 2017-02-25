@@ -10,6 +10,7 @@
     ["import", {
       "libraryName": "invincible",
       "camel2DashComponentName": false
-    }]
+    }],
+    "react-hot-loader/babel"
   ]
 }
