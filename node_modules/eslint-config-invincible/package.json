@@ -1,0 +1,21 @@
+{
+  "name": "eslint-config-invincible",
+  "version": "1.0.0",
+  "description": "An ESLint config which format JS syntax beautifully.",
+  "keywords": [
+    "eslint",
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": "^3.15.0",
+    "babel-eslint": "^7.1.1"
+  },
+  "author": "Chikara Chan",
+  "homepage": "https://github.com/chikara-chan/eslint-config-invincible",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chikara-chan/eslint-config-invincible.git"
+  },
+  "license": "MIT"
+}

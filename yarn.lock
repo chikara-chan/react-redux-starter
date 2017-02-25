@@ -435,9 +435,9 @@ babel-plugin-import@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.1.1.tgz#98977e6e9cef92bffef04bb1f291c44039fe21c6"
 
-babel-plugin-react-scope-binding@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-scope-binding/-/babel-plugin-react-scope-binding-1.1.0.tgz#4fd25dc74719a68ba0db59d9387421379010ff1c"
+babel-plugin-react-scope-binding:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-scope-binding/-/babel-plugin-react-scope-binding-1.1.1.tgz#20a7fb8946b02ae609ef225aeebf923ba31e27cb"
 
 babel-plugin-react-transform@^2.0.2:
   version "2.0.2"

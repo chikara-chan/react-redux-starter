@@ -9,7 +9,7 @@ class Header extends PureComponent {
 
   render() {
     return (
-      <header className={styles.header}>
+      <header className={styles.header} onClick={this.handleClick}>
         <div className={styles.left}>
           <span className={styles.span}>Boilerplate</span>
         </div>
