@@ -2,6 +2,11 @@
   "presets": ["es2015", "react", "stage-0"],
   "plugins": [
     "transform-runtime",
+    "add-module-exports",
+    ["react-scope-binding", {
+      "propPrefix": ["on"],
+      "advanced": true
+    }],
     ["import", {
       "libraryName": "invincible",
       "camel2DashComponentName": false
