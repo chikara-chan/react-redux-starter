@@ -1,30 +1,22 @@
 import types from '../constants/ActionTypes'
 import utils from '../shared/utils'
 
-function replaceUserInfo(userInfo) {
+function replaceOrders(orders) {
   return {
-    type: types.REPLACE_USER_INFO,
-    userInfo
+    type: types.REPLACE_ORDERS,
+    orders
   }
 }
 
-function clearUserInfo() {
-  return {type: types.CLEAR_USER_INFO}
-}
-
-function fetchUserInfo() {
+function fetchOrders() {
   return dispatch => {
     utils.ajax({
-      url: '/api/user/getUserInfo',
+      url: '/api/user/fetchOrders',
       type: 'get'
     }).then(res => {
-      dispatch(replaceUserInfo(res))
+      dispatch(replaceOrders(res))
     })
   }
 }
 
-export default {
-  replaceUserInfo,
-  fetchUserInfo,
-  clearUserInfo
-}
+export default {fetchOrders}

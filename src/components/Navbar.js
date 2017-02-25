@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import styles from '../sass/Navbar'
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
   constructor() {
     super()
   }

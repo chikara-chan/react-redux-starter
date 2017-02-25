@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import styles from '../sass/Header'
 import imgAvatar from '../assets/avatar.png'
 
-class Header extends Component {
+class Header extends PureComponent {
   constructor() {
     super()
   }

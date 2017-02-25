@@ -1,24 +1,26 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
 import actions from '../actions'
 import styles from '../sass/App'
 import '../sass/global'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
+import Main from '../components/Main'
 
-class App extends Component {
+class App extends PureComponent {
   constructor() {
     super()
   }
 
   render() {
-    const {actions} = this.props
+    const {actions, orders} = this.props
 
     return (
       <div className={styles.app}>
         <Header actions={actions}/>
         <Navbar actions={actions}/>
+        <Main actions={actions} orders={orders}/>
       </div>
     )
   }
