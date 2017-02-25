@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
-import styles from '../sass/Header'
-import imgAvatar from '../assets/avatar.png'
+import styles from 'sass/Header'
+import imgAvatar from 'assets/avatar.png'
 
 class Header extends PureComponent {
   constructor() {

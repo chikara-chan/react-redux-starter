@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import styles from '../sass/Order'
+import styles from 'sass/Order'
 
 class Order extends PureComponent {
   constructor() {

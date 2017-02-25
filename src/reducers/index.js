@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import types from '../constants/ActionTypes'
+import types from 'constants/ActionTypes'
 
 const initialOrders = [
   {

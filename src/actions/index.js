@@ -1,5 +1,5 @@
-import types from '../constants/ActionTypes'
-import utils from '../shared/utils'
+import types from 'constants/ActionTypes'
+import utils from 'shared/utils'
 
 function replaceOrders(orders) {
   return {

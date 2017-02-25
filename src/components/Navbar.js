@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import styles from '../sass/Navbar'
+import styles from 'sass/Navbar'
 
 class Navbar extends PureComponent {
   constructor() {
