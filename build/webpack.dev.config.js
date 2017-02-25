@@ -7,6 +7,8 @@ module.exports = {
   entry: {
     bundle: [
       'webpack-hot-middleware/client',
+      'webpack/hot/only-dev-server',
+      'react-hot-loader/patch',
       './src'
     ],
     vendor: [
@@ -20,13 +22,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
-    publicPath: '/dist'
+    publicPath: '/'
   },
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'react-hot-loader!babel-loader?cacheDirectory'
+      loader: 'babel-loader?cacheDirectory'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
