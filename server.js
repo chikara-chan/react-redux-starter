@@ -15,6 +15,6 @@ app.use(convert(devMiddleware(compiler, {
   publicPath: config.output.publicPath
 })))
 app.use(convert(hotMiddleware(compiler)))
-app.use(serve(path.join(__dirname, 'views')))
+app.use(serve(path.join(__dirname, 'public')))
 app.listen(port)
 console.log(`\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`)
