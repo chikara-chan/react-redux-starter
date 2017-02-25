@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A web application configure based on react、redux and webpack",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node server.js",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --config ./webpack.prod.config.js --progress",
+    "dev": "cross-env NODE_ENV=development node ./build/server.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
     "clean": "rimraf ./dist/*",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint -- --fix"
