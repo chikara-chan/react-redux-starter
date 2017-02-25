@@ -5,8 +5,8 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: {
     bundle: [
-      './src',
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+      'webpack-hot-middleware/client',
+      './src'
     ],
     vendor: [
       'react',
@@ -25,38 +25,31 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {cacheDirectory: true}
+      loader: 'react-hot-loader!babel-loader?cacheDirectory'
     }, {
       test: /\.css$/,
-      loaders: [
-        'style',
-        'css'
-      ]
+      loader: 'style-loader!css-loader'
     }, {
       test: /\.scss$/,
-      loaders: [
-        'style',
-        'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
-        'sass'
-      ]
+      loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]!sass-loader'
     }, {
       test: /\.(jpg|png|gif|webp)$/,
-      loader: 'url?limit=8000'
-    }, {
-      test: /\.json$/,
-      loader: 'json'
+      loader: 'url-loader?limit=8000'
     }]
   },
-  resolve: {extensions: ['', '.js', '.json', '.scss']},
+  resolve: {
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.json', '.scss']
+  },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       filename: '[name].js'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
   ]
 }
