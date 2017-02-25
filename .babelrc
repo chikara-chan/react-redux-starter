@@ -11,10 +11,5 @@
       "libraryName": "invincible",
       "camel2DashComponentName": false
     }]
-  ],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
-    }
-  }
+  ]
 }
