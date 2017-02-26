@@ -3,10 +3,6 @@ import styles from 'sass/Main'
 import Order from 'components/Order'
 
 class Main extends PureComponent {
-  constructor() {
-    super()
-  }
-
   handleClick() {
     const {actions} = this.props
 

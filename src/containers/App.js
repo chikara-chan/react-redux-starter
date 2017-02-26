@@ -9,10 +9,6 @@ import Navbar from 'components/Navbar'
 import Main from 'components/Main'
 
 class App extends PureComponent {
-  constructor() {
-    super()
-  }
-
   render() {
     const {actions, orders} = this.props
 
