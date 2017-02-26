@@ -1,0 +1,7 @@
+@import '../../shared/mixins';
+
+body {
+  font-family: $family;
+  font-size: $size;
+  line-height: $line-height;
+}

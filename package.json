@@ -1,15 +1,17 @@
 {
+  "private": true,
   "name": "react-redux-starter",
   "version": "1.0.0",
-  "description": "A web application configure based on react、redux and webpack",
+  "description": "A web application configure based on react、redux and webpack.",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./build/server.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
-    "clean": "rimraf ./dist/*",
+    "clean": "rimraf ./build/*",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "antd": "^2.7.2",
     "invincible": "^1.2.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
@@ -53,13 +55,16 @@
     "sass-loader": "^6.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-merge": "^3.0.0"
   },
-  "author": "Chikara Chan",
-  "homepage": "https://github.com/chikara-chan/react-redux-starter",
+  "author": [
+    "Bo Fang",
+    "Chikara Chan"
+  ],
+  "homepage": "http://gitlab.51xianqu.com/b2b/b2b-buyer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chikara-chan/react-redux-starter.git"
-  },
-  "license": "MIT"
+    "url": "git@gitlab.51xianqu.com:b2b/b2b-buyer.git"
+  }
 }

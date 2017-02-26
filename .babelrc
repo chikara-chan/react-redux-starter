@@ -7,10 +7,13 @@
       "propPrefix": ["on"],
       "advanced": true
     }],
-    ["import", {
+    ["import", [{
       "libraryName": "invincible",
       "camel2DashComponentName": false
-    }],
+    }, {
+      "libraryName": "antd",
+      "style": "css",
+    }]],
     "react-hot-loader/babel"
   ]
 }
