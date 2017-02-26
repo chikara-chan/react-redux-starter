@@ -2,7 +2,8 @@ const webpack = require('webpack'),
   merge = require('webpack-merge'),
   baseConfig = require('./webpack.base.config'),
   entry = baseConfig.entry
-let devEntry = {}
+let devEntry = {
+}
 
 Object.keys(entry).forEach(key => {
   const hot = [

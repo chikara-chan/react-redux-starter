@@ -17,14 +17,21 @@ function fetchOrders() {
       dispatch(replaceOrders(res))
     })
 
-    const mock = [
-      {id: 1, name: '订单1'},
-      {id: 2, name: '订单2'},
-      {id: 3, name: '订单3'}
-    ]
+    const mock = [{
+      id: 1,
+      name: '订单1'
+    }, {
+      id: 2,
+      name: '订单2'
+    }, {
+      id: 3,
+      name: '订单3'
+    }]
 
     dispatch(replaceOrders(mock))
   }
 }
 
-export default {fetchOrders}
+export default {
+  fetchOrders
+}
