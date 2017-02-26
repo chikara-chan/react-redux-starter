@@ -23,11 +23,11 @@ function ajax(options) {
   })
   action = options.type === 'get' ? 'query' : 'send'
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     promise[action](options.data).then(res => {
       resolve(res.body)
     }).catch(err => {
-      console.log(err)
+      reject(err)
     })
   })
 }
