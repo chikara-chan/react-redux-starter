@@ -1,9 +1,7 @@
 import request from 'superagent'
 import {message} from 'antd'
 
-message.config({
-  top: 63
-})
+message.config({top: 63})
 
 /**
  * @param {Object} options
@@ -30,10 +28,11 @@ function ajax(options) {
     promise[action](options.data).then(res => {
       if (!res.body.status) {
         message.error(res.body.message)
+
         return
       }
       resolve(res.body.entry)
-    }).catch(err => {
+    }).catch(() => {
       message.error('出错了')
     })
   })

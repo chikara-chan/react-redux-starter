@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import styles from '../sass/MainSection'
-import {Button, Form, Input, Select, Option, Icon} from 'antd'
+import {Button, Form, Input, Icon} from 'antd'
 import ajax from 'shared/ajax'
 import {getURLParams} from 'invincible'
 
@@ -37,16 +37,20 @@ class MainSection extends PureComponent {
         <Form onSubmit={this.handleSubmit}
           className={styles.form}>
           <Form.Item className={styles.field}>
-            {form.getFieldDecorator('userName', {rules: [{
-              required: true,
-              message: '用户名不能为空'
-            }]})(<Input addonBefore={<Icon type="user"/>} placeholder="手机号"/>)}
+            {form.getFieldDecorator('userName', {
+              rules: [{
+                required: true,
+                message: '用户名不能为空'
+              }]
+            })(<Input addonBefore={<Icon type="user"/>} placeholder="手机号"/>)}
           </Form.Item>
           <Form.Item className={styles.field}>
-            {form.getFieldDecorator('password', {rules: [{
-              required: true,
-              message: '密码不能为空'
-            }]})(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
+            {form.getFieldDecorator('password', {
+              rules: [{
+                required: true,
+                message: '密码不能为空'
+              }]
+            })(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
           </Form.Item>
           <Form.Item className={styles.field}>
             <Button className={styles.button} htmlType="submit">登录</Button>

@@ -1,7 +1,3 @@
-const mapOrderState = {
-  '0': '待接单'
-}
+const mapOrderState = {0: '待接单'}
 
-export default {
-  mapOrderState
-}
+export default {mapOrderState}
