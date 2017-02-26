@@ -5,6 +5,10 @@ import ajax from 'shared/ajax'
 import {getURLParams} from 'invincible'
 
 class MainSection extends PureComponent {
+  state = {
+    loading: false
+  }
+
   handleSubmit(e) {
     e.preventDefault()
 
@@ -12,6 +16,9 @@ class MainSection extends PureComponent {
 
     form.validateFields((err, values) => {
       if (!err) {
+        this.setState({
+          loading: true
+        })
         ajax({
           url: '/api/login',
           data: values
@@ -23,17 +30,22 @@ class MainSection extends PureComponent {
           } else {
             location.replace('/')
           }
+        }).catch(() => {
+          this.setState({
+            loading: false
+          })
         })
       }
     })
   }
 
   render() {
-    const {form} = this.props
+    const {form} = this.props,
+      {loading} = this.state
 
     return (
       <div className={styles.mainSection}>
-        <h1 className={styles.title}>Boilerplate</h1>
+        <h1 className={styles.title}>采购商城</h1>
         <Form onSubmit={this.handleSubmit}
           className={styles.form}>
           <Form.Item className={styles.field}>
@@ -53,7 +65,7 @@ class MainSection extends PureComponent {
             })(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
           </Form.Item>
           <Form.Item className={styles.field}>
-            <Button className={styles.button} htmlType="submit">登录</Button>
+            <Button className={styles.button} htmlType="submit" loading={loading}>登录</Button>
           </Form.Item>
         </Form>
       </div>

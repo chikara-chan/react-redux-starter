@@ -28,16 +28,18 @@ function ajax(options) {
   })
   action = options.type === 'get' ? 'query' : 'send'
 
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     promise[action](options.data).then(res => {
       if (!res.body.status) {
         message.error(res.body.message)
+        reject(new Error(res.body.message))
 
         return
       }
       resolve(res.body.entry)
-    }).catch(() => {
+    }).catch(err => {
       message.error('出错了')
+      reject(err)
     })
   })
 }
