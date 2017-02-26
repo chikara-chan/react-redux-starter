@@ -1,4 +1,5 @@
-$family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+$family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$line-height: 1;
 $bg: #f9f9f9;
 $color: #333;
 $colorLight: #999;
@@ -65,7 +66,7 @@ $size-xl: 18px;
 @mixin reset-layout() {
   margin: 0;
   padding: 0;
-  line-height: 1;
+  line-height: $line-height;
 }
 
 @mixin reset-list() {
@@ -102,7 +103,7 @@ $size-xl: 18px;
   } @else {
     color: #fff;
     background: $bg;
-    border: 1px solid darken($bg, 10%);
+    border: 1px solid darken($bg, 5%);
     &:hover {
       background: lighten($bg, 5%);
     }
@@ -110,4 +111,14 @@ $size-xl: 18px;
   border-radius: 3px;
   outline: none;
   cursor: pointer;
+}
+
+@mixin clearfix() {
+  &::before, &::after {
+    display: table;
+    content: '';
+  }
+  &::after {
+    clear: both;
+  }
 }
