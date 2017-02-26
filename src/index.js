@@ -19,7 +19,7 @@ if (module.hot) {
 
     render(
       <AppContainer>
-        <NextRoot store={store} />
+        <NextRoot store={store}/>
       </AppContainer>,
       document.getElementById('root')
     )

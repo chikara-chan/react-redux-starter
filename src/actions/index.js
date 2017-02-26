@@ -1,5 +1,5 @@
 import types from 'constants/ActionTypes'
-import utils from 'shared/utils'
+import ajax from 'shared/ajax'
 
 function replaceOrders(orders) {
   return {
@@ -10,7 +10,7 @@ function replaceOrders(orders) {
 
 function fetchOrders() {
   return dispatch => {
-    utils.ajax({
+    ajax({
       url: '/api',
       type: 'get'
     }).then(res => {
