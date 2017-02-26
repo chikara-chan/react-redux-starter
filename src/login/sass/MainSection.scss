@@ -1,0 +1,19 @@
+@import '../../shared/mixins';
+
+.main-section {
+  @include absolute(50% 0 auto 0);
+  transform: translate(0, -50%);
+  .title {
+    text-align: center;
+  }
+  .form {
+    margin: 0 auto;
+    max-width: 300px;
+    .field {
+      .button {
+        @include reset-button($primary);
+        width: 100%;
+      }
+    }
+  }
+}
