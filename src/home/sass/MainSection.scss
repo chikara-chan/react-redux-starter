@@ -1,7 +1,4 @@
 @import '../../shared/mixins';
 
 .main-section {
-  .button {
-    @include reset-button($primary);
-  }
 }
