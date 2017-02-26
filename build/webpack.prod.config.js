@@ -16,7 +16,7 @@ module.exports = {
     ]
   },
   output: {
-    path:'./dist',
+    path: './dist',
     filename: '[name].js'
   },
   module: {
@@ -50,15 +50,11 @@ module.exports = {
       names: ['vendor', 'manifest'],
       filename: '[name].js'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false
-    }),
+    new webpack.optimize.UglifyJsPlugin({comments: false}),
     new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)}),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      options: {
-        postcss: [autoprefixer({browsers: ['> 5%']})]
-      }
+      options: {postcss: [autoprefixer({browsers: ['> 5%']})]}
     }),
     new ExtractTextPlugin('[name].css')
   ]
