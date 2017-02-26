@@ -4,7 +4,8 @@ const path = require('path'),
 module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
-    'home/bundle': './src/home'
+    'home/bundle': './src/home',
+    'login/bundle': './src/login'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
