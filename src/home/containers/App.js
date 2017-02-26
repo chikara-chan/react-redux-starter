@@ -6,10 +6,6 @@ import styles from '../sass/App'
 import MainSection from '../components/MainSection'
 
 class App extends PureComponent {
-  constructor() {
-    super()
-  }
-
   render() {
     const {actions, orders} = this.props
 

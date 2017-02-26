@@ -4,10 +4,6 @@ import Order from './Order'
 import {Button} from 'antd'
 
 class MainSection extends PureComponent {
-  constructor() {
-    super()
-  }
-
   handleClick() {
     const {actions} = this.props
 
