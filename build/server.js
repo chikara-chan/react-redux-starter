@@ -5,7 +5,12 @@ const Koa = require('koa'),
   path = require('path'),
   devMiddleware = require('koa-webpack-dev-middleware'),
   hotMiddleware = require('koa-webpack-hot-middleware'),
-  config = require('./webpack.dev.config'),
+  argv = process.argv,
+  config = require('./webpack.dev.config')({
+    module: ~argv.indexOf('--env.module') ?
+      argv[argv.indexOf('--env.module') + 1] :
+      false
+  }),
   app = new Koa(),
   compiler = webpack(config),
   port = process.env.port || 3000
