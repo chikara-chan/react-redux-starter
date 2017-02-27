@@ -5,7 +5,9 @@
   "description": "A web application configure based on react、redux and webpack.",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./build/server.js",
+    "dev:part": "npm run dev -- --env.module",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
+    "build:part": "npm run build -- --env.module",
     "clean": "rimraf ./build/*",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint -- --fix"
