@@ -1,5 +1,6 @@
 import types from '../constants/ActionTypes'
 import ajax from 'shared/ajax'
+import api from 'shared/api'
 
 function replaceOrders(orders) {
   return {
@@ -11,7 +12,7 @@ function replaceOrders(orders) {
 function fetchOrders() {
   return dispatch => {
     ajax({
-      url: '/api/user/fetchOrders',
+      url: api.queryOrders,
       type: 'get'
     }).then(res => {
       dispatch(replaceOrders(res))
