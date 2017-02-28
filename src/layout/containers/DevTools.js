@@ -11,20 +11,14 @@ export default createDevTools(
     <ChartMonitor style={{
       padding: '0 20px',
       background: '#fff',
-      text: {
-        colors: {
-          hover: '#378cbe'
-        }
-      }
+      text: {colors: {hover: '#378cbe'}}
     }}
-      tooltipOptions={{
-        style: {
-          background: '#fff',
-          opacity: '0.9',
-          borderRadius: '5px',
-          border: '1px solid #dbdbdb',
-          padding: '5px'
-        }
-      }}/>
+      tooltipOptions={{style: {
+        background: '#fff',
+        opacity: '0.9',
+        borderRadius: '5px',
+        border: '1px solid #dbdbdb',
+        padding: '5px'
+      }}}/>
   </DockMonitor>
 )

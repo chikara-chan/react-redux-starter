@@ -1,8 +1,7 @@
 const path = require('path'),
   fs = require('fs'),
   webpack = require('webpack')
-let entry = {
-}
+let entry = {}
 
 fs.readdirSync(path.resolve(__dirname, '../src')).forEach(filename => {
   if (!~['.DS_Store', 'layout', 'shared'].indexOf(filename)) {
@@ -19,8 +18,7 @@ module.exports = function(env) {
       entry[`${module}/bundle`] = `./src/${module}`
 
       return entry
-    }, {
-    })
+    }, {})
   }
 
   return {
@@ -31,19 +29,17 @@ module.exports = function(env) {
       filename: '[name].js',
       publicPath: '/'
     },
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader?cacheDirectory'
-      }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }, {
-        test: /\.(jpg|png|gif|webp)$/,
-        loader: 'url-loader?limit=8000'
-      }]
-    },
+    module: {loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader?cacheDirectory'
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.(jpg|png|gif|webp)$/,
+      loader: 'url-loader?limit=8000'
+    }]},
     resolve: {
       modules: [
         './src',
@@ -59,9 +55,7 @@ module.exports = function(env) {
       superagent: 'window.superagent'
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      })
+      new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
     ]
   }
 }

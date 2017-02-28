@@ -6,11 +6,9 @@ const Koa = require('koa'),
   devMiddleware = require('koa-webpack-dev-middleware'),
   hotMiddleware = require('koa-webpack-hot-middleware'),
   argv = process.argv,
-  config = require('./webpack.dev.config')({
-    module: ~argv.indexOf('--env.module') ?
+  config = require('./webpack.dev.config')({module: ~argv.indexOf('--env.module') ?
       argv[argv.indexOf('--env.module') + 1] :
-      false
-  }),
+      false}),
   app = new Koa(),
   compiler = webpack(config),
   port = process.env.port || 3000
