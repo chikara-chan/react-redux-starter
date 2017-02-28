@@ -1,7 +1,9 @@
 import request from 'superagent'
 import {message} from 'antd'
 
-message.config({top: 63})
+message.config({
+  top: 63
+})
 
 /**
  * @param {Object} options

@@ -33,4 +33,6 @@ function fetchOrders() {
   }
 }
 
-export default {fetchOrders}
+export default {
+  fetchOrders
+}

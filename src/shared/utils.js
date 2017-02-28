@@ -3,4 +3,6 @@ const mapOrderStatus = {
   1: '已接单'
 }
 
-export default {mapOrderStatus}
+export default {
+  mapOrderStatus
+}

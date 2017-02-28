@@ -5,7 +5,9 @@ import ajax from 'shared/ajax'
 import {getURLParams} from 'invincible'
 
 class MainSection extends PureComponent {
-  state = {loading: false}
+  state = {
+    loading: false
+  }
 
   handleSubmit(e) {
     e.preventDefault()
@@ -14,7 +16,9 @@ class MainSection extends PureComponent {
 
     form.validateFields((err, values) => {
       if (!err) {
-        this.setState({loading: true})
+        this.setState({
+          loading: true
+        })
         ajax({
           url: '/api/login',
           data: values
@@ -27,7 +31,9 @@ class MainSection extends PureComponent {
             location.replace('/')
           }
         }).catch(() => {
-          this.setState({loading: false})
+          this.setState({
+            loading: false
+          })
         })
       }
     })
@@ -43,16 +49,20 @@ class MainSection extends PureComponent {
         <Form onSubmit={this.handleSubmit}
           className={styles.form}>
           <Form.Item className={styles.field}>
-            {form.getFieldDecorator('userName', {rules: [{
-              required: true,
-              message: '用户名不能为空'
-            }]})(<Input addonBefore={<Icon type="user"/>} placeholder="手机号"/>)}
+            {form.getFieldDecorator('userName', {
+              rules: [{
+                required: true,
+                message: '用户名不能为空'
+              }]
+            })(<Input addonBefore={<Icon type="user"/>} placeholder="手机号"/>)}
           </Form.Item>
           <Form.Item className={styles.field}>
-            {form.getFieldDecorator('password', {rules: [{
-              required: true,
-              message: '密码不能为空'
-            }]})(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
+            {form.getFieldDecorator('password', {
+              rules: [{
+                required: true,
+                message: '密码不能为空'
+              }]
+            })(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
           </Form.Item>
           <Form.Item className={styles.field}>
             <Button className={styles.button} htmlType="submit" loading={loading}>登录</Button>

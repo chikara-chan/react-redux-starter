@@ -7,4 +7,6 @@ function getOuterURL(url) {
   return `http://${document.domain}${url}`
 }
 
-export default {queryOrders: getOuterURL('/api/queryOrders')}
+export default {
+  queryOrders: getOuterURL('/api/queryOrders')
+}

@@ -15,10 +15,12 @@ module.exports = function(env) {
 
   return merge(base, {
     devtool: 'eval-source-map',
-    module: {loaders: [{
-      test: /\.scss$/,
-      loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]!sass-loader'
-    }]},
+    module: {
+      loaders: [{
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]!sass-loader'
+      }]
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]

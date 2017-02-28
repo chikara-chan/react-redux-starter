@@ -12,4 +12,6 @@ function orders(state = initialOrders, action) {
   }
 }
 
-export default combineReducers({orders})
+export default combineReducers({
+  orders
+})
