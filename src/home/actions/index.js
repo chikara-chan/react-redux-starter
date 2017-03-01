@@ -18,18 +18,16 @@ function fetchOrders() {
       dispatch(replaceOrders(res))
     })
 
-    const mock = [{
-      id: 1,
-      name: '订单1'
-    }, {
-      id: 2,
-      name: '订单2'
-    }, {
-      id: 3,
-      name: '订单3'
-    }]
+    const mock = []
 
-    dispatch(replaceOrders(mock))
+    for (let i = 1; i < 10; i++) {
+      mock.push({
+        id: i,
+        name: `订单${i}`
+      })
+    }
+
+    dispatch(replaceShops(mock))
   }
 }
 

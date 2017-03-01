@@ -7,13 +7,13 @@ import Navbar from '../components/Navbar'
 import Main from '../components/Main'
 
 function Layout(props) {
-  const {actions, orders, children} = props
+  const {children} = props
 
   return (
-    <div className={styles.common}>
-      <Header actions={actions}/>
-      <Navbar actions={actions}/>
-      <Main actions={actions} orders={orders}>
+    <div className={styles.layout}>
+      <Header/>
+      <Navbar/>
+      <Main>
         {children}
       </Main>
     </div>
