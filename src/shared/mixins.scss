@@ -97,7 +97,7 @@ $size-xl: 18px;
 @mixin reset-button($bg: null) {
   @if $bg == null {
     background: #fff;
-    border: 1px solid $button-border;
+    border: $button-border;
     &:hover {
       color: $primary;
       border: 1px solid $primary;
