@@ -2,17 +2,17 @@ $family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "
 $line-height: 1;
 $bg: #f9f9f9;
 $color: #333;
-$colorLight: #999;
-$colorStrong: #f04134;
+$color-light: #999;
+$color-strong: #f04134;
 $primary: #108ee9;
 $error: #f04134;
 $border: 1px solid #e9e9e9;
-$buttonBorder: 1px solid #d9d9d9;
-$size-xs: 8px;
-$size-sm: 10px;
-$size: 12px;
-$size-lg: 14px;
-$size-xl: 16px;
+$button-border: 1px solid #d9d9d9;
+$size-xs: 10px;
+$size-sm: 12px;
+$size: 14px;
+$size-lg: 16px;
+$size-xl: 18px;
 
 @mixin border($list: top right bottom left, $border: $border) {
   @each $item in $list {
@@ -80,16 +80,16 @@ $size-xl: 16px;
   }
 }
 
-@mixin reset-link($hoverColor: null) {
+@mixin reset-link($hover-color: null) {
   color: $color;
   text-decoration: none;
-  @if $hoverColor == null {
+  @if $hover-color == null {
     &:hover{
       color: $primary;
     }
   } @else {
     &:hover{
-      color: $hoverColor;
+      color: $hover-color;
     }
   }
 }
@@ -97,7 +97,7 @@ $size-xl: 16px;
 @mixin reset-button($bg: null) {
   @if $bg == null {
     background: #fff;
-    border: 1px solid $buttonBorder;
+    border: $button-border;
     &:hover {
       color: $primary;
       border: 1px solid $primary;
