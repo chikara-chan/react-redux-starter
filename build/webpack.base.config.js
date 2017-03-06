@@ -3,11 +3,13 @@ const path = require('path'),
   webpack = require('webpack')
 let entry = {}
 
-fs.readdirSync(path.resolve(__dirname, '../src')).forEach(filename => {
-  if (!~['.DS_Store', 'layout', 'shared'].indexOf(filename)) {
+fs.readdirSync(path.resolve(__dirname, '../src'))
+  .filter(filename =>
+    !filename.match(/^\.|^_|layout|shared/)
+  )
+  .forEach(filename => {
     entry[`${filename}/bundle`] = `./src/${filename}`
-  }
-})
+  })
 
 module.exports = function(env) {
   let modules
