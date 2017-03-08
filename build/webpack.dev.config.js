@@ -19,6 +19,9 @@ module.exports = function(env) {
       loaders: [{
         test: /\.scss$/,
         loader: 'style-loader!css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]!sass-loader'
+      }, {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }]
     },
     plugins: [

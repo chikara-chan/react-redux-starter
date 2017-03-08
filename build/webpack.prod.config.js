@@ -13,6 +13,12 @@ module.exports = function(env) {
           fallback: 'style-loader',
           use: 'css-loader?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]!postcss-loader!sass-loader'
         })
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!postcss-loader'
+        })
       }]
     },
     plugins: [

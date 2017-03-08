@@ -37,9 +37,6 @@ module.exports = function(env) {
         exclude: /node_modules/,
         loader: 'babel-loader?cacheDirectory'
       }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }, {
         test: /\.(jpg|png|gif|webp)$/,
         loader: 'url-loader?limit=8000'
       }]
