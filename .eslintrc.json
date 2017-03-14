@@ -8,6 +8,6 @@
   "rules": {
     "react/prop-types": ["off"],
     "react/jsx-curly-spacing": ["error"],
-    "react/jsx-space-before-closing": ["error", "never"]
+    "react/jsx-space-before-closing": ["error"]
   }
 }

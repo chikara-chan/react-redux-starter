@@ -9,7 +9,7 @@ const store = configureStore(reducers)
 
 render(
   <Layout store={store}>
-    <App/>
+    <App />
   </Layout>,
   document.getElementById('root')
 )
@@ -20,7 +20,7 @@ if (module.hot) {
 
     render(
       <NextLayout store={store}>
-        <App/>
+        <App />
       </NextLayout>,
       document.getElementById('root')
     )
@@ -30,7 +30,7 @@ if (module.hot) {
 
     render(
       <Layout store={store}>
-        <NextApp/>
+        <NextApp />
       </Layout>,
       document.getElementById('root')
     )

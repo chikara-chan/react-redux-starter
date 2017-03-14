@@ -25,6 +25,6 @@ export default createDevTools(
           border: '1px solid #dbdbdb',
           padding: '5px'
         }
-      }}/>
+      }} />
   </DockMonitor>
 )

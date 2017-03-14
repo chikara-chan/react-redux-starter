@@ -54,7 +54,7 @@ class MainSection extends PureComponent {
                 required: true,
                 message: '用户名不能为空'
               }]
-            })(<Input addonBefore={<Icon type="user"/>} placeholder="手机号"/>)}
+            })(<Input addonBefore={<Icon type="user" />} placeholder="手机号" />)}
           </Form.Item>
           <Form.Item className={styles.field}>
             {form.getFieldDecorator('password', {
@@ -62,7 +62,7 @@ class MainSection extends PureComponent {
                 required: true,
                 message: '密码不能为空'
               }]
-            })(<Input addonBefore={<Icon type="lock"/>} placeholder="密码"/>)}
+            })(<Input addonBefore={<Icon type="lock" />} placeholder="密码" />)}
           </Form.Item>
           <Form.Item className={styles.field}>
             <Button className={styles.button} htmlType="submit" loading={loading}>登录</Button>

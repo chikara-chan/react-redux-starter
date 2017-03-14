@@ -5,7 +5,7 @@ import App from './containers/App'
 
 render(
   <AppContainer>
-    <App/>
+    <App />
   </AppContainer>,
   document.getElementById('root')
 )
@@ -16,7 +16,7 @@ if (module.hot) {
 
     render(
     <AppContainer>
-      <NextApp/>
+      <NextApp />
     </AppContainer>,
       document.getElementById('root')
     )

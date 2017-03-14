@@ -8,7 +8,7 @@ class App extends PureComponent {
   render() {
     return (
       <div className={styles.app}>
-        <MainSection/>
+        <MainSection />
       </div>
     )
   }

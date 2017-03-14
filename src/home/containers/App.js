@@ -11,7 +11,7 @@ class App extends PureComponent {
 
     return (
       <div className={styles.app}>
-        <MainSection orders={orders} actions={actions}/>
+        <MainSection orders={orders} actions={actions} />
       </div>
     )
   }

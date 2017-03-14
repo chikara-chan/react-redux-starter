@@ -12,7 +12,7 @@ function Root(props) {
       <Provider store={store}>
         <div>
           <Layout>{children}</Layout>
-          <DevTools/>
+          <DevTools />
         </div>
       </Provider>
     </AppContainer>

@@ -11,8 +11,8 @@ function Layout(props) {
 
   return (
     <div className={styles.layout}>
-      <Header/>
-      <Navbar/>
+      <Header />
+      <Navbar />
       <Main>
         {children}
       </Main>
